@@ -31,6 +31,7 @@
 
 html {
   min-width: 360px;
+  font-family: var(--font-mono);
 }
 
 .prose .anchor {
@@ -147,4 +148,21 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+@layer base {
+  
+  
+  ul.list-\[diamond\] {
+    @apply pl-6;
+    list-style: none !important;
+  }
+
+  ul.list-\[diamond\] li::before {
+    content: "◆";
+    padding-right: 0.5rem;
+    color: currentColor;
+    position: absolute;
+    margin-left: -1.5rem;
+  }
 }
