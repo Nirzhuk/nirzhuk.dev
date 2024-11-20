@@ -32,6 +32,20 @@ export default function Page() {
             with them.
           </p>
         </li>
+         <li>
+          <Link
+            href="https://wwa-builder.nirzhuk.dev"
+            className="text-lg font-semibold text-[#51e018] hover:text-[#8be169]"
+          >
+            wwa-builder
+          </Link>
+          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
+            Stacked with Next.js, Tailwind/Shadcn, Supabase
+          </p>
+          <p>
+            A simple tool to build your own WWArmies Army and share them.
+          </p>
+        </li>
         <li>
           <Link
             href="/projects/nirzhuk-dev"
