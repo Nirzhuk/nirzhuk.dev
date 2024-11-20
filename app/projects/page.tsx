@@ -35,7 +35,7 @@ export default function Page() {
          <li>
           <Link
             href="https://wwa-builder.nirzhuk.dev"
-            className="text-lg font-semibold text-[#51e018] hover:text-[#8be169]"
+            className="text-lg font-semibold text-[#e0a418] hover:text-[#e1c369]"
           >
             wwa-builder
           </Link>
