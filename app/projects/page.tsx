@@ -19,6 +19,20 @@ export default function Page() {
         </li>
         <li>
           <Link
+            href="https://snackies.app"
+            className="text-lg font-semibold text-[#18e083] hover:text-[#21f793] "
+          >
+            Snackies
+          </Link>
+          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
+            Stacked with React Native, Expo, Custom API AI, and NativeWind
+          </p>
+          <p>
+            Calories tracker app for your daily meals.
+          </p>
+        </li>
+        <li>
+          <Link
             href="https://interlinked.love"
             className="text-lg font-semibold text-[#e018c2] hover:text-[#f721d7] "
           >
