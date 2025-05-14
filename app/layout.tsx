@@ -4,6 +4,7 @@ import { Space_Mono } from 'next/font/google'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
+import PlausibleProvider from "next-plausible";
 
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
@@ -59,6 +60,8 @@ export default function RootLayout({
         spaceMono.variable
       )}
     >
+    				<PlausibleProvider domain="nirzhuk.dev" customDomain="https://plausible.nirzhuk.dev" />
+
       <body className="antialiased max-w-xl mx-4  lg:mx-auto min-h-screen flex flex-col">
         <main className="flex-1 min-w-0 flex flex-col px-2 md:px-0">
           <Navbar />
