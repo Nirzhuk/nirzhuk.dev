@@ -8,6 +8,7 @@ import PlausibleProvider from "next-plausible";
 
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
+import Clock from './components/clock'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -62,7 +63,9 @@ export default function RootLayout({
     >
     				<PlausibleProvider domain="nirzhuk.dev" customDomain="https://plausible.nirzhuk.dev" />
 
-      <body className="antialiased max-w-xl mx-4  lg:mx-auto min-h-screen flex flex-col">
+      <body className="relative antialiased">
+        <Clock />
+        <div className="max-w-4xl mx-4  lg:mx-auto min-h-screen flex flex-col">
         <main className="flex-1 min-w-0 flex flex-col px-2 md:px-0">
           <Navbar />
           <section className="flex-1 flex flex-col space-y-4">
@@ -70,6 +73,8 @@ export default function RootLayout({
           </section>
           <Footer />
         </main>
+        </div>
+
       </body>
     </html>
   )

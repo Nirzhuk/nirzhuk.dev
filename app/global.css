@@ -4,8 +4,11 @@
   background-color: #47a3f3;
   color: #fefefe;
 }
+@theme {
+  --color-primary: #51e018;
+}
 
-:root {
+/* :root {
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -27,7 +30,7 @@
   html {
     color-scheme: dark;
   }
-}
+} */
 
 html {
   min-width: 360px;

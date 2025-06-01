@@ -63,7 +63,7 @@ export default function Page() {
         <li>
           <Link
             href="/projects/nirzhuk-dev"
-            className="text-lg font-semibold text-[#51e018] hover:text-[#8be169]"
+            className="text-lg font-semibold text-primary hover:text-[#8be169]"
           >
             nirzhuk-dev
           </Link>

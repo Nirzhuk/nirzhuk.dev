@@ -1,8 +1,15 @@
 import Link from 'next/link'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
+import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx'
+
+export interface BlogPost extends BaseMetadata {
+  title: string
+  publishedAt: string
+  summary: string
+}
+
 
 export function BlogPosts() {
-  const allBlogs = getBlogPosts()
+  const allBlogs = getBlogPosts<BlogPost>()
 
   return (
     <div>
@@ -21,13 +28,18 @@ export function BlogPosts() {
             className="flex flex-col space-y-1 mb-4"
             href={`/blog/${post.slug}`}
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 dark:text-neutral-400 w-[180px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
+            <div className="w-full group flex flex-col gap-4">
+              <div className="flex flex-row space-x-2 items-center justify-between">
               <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
                 {post.metadata.title}
               </p>
+              <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-xs">
+                {formatDate(post.metadata.publishedAt, false)}
+              </p>
+             </div>
+              <span className="text-primary/60 text-sm">
+                {post.metadata.summary}
+              </span>
             </div>
           </Link>
         ))}
