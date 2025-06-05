@@ -62,6 +62,35 @@ html:before {
   position: relative;
 }
 
+@keyframes slideDown {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  25% {
+    opacity: 0.5;
+    transform: translateX(20px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-20px);
+  }
+  75% {
+    opacity: 0.3;
+    transform: translateX(10px);
+  }
+}
+
 .terminal-background:after {
   content: '';
   pointer-events: none;
@@ -73,10 +102,14 @@ html:before {
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0) 2px,
-    rgba(255, 255, 255, 0.03) 2px,
-    rgba(255, 255, 255, 0.03) 4px
+    rgba(0, 0, 0, 0) 4px,
+    rgba(255, 255, 255, 0.03) 4px,
+    rgba(255, 255, 255, 0.03) 8px
   );
+  background-size: 100% 8px;
+  animation:
+    slideDown 30s linear infinite,
+    glitch 9s linear infinite;
 }
 
 .prose .anchor {
@@ -210,48 +243,4 @@ table {
     position: absolute;
     margin-left: -1.5rem;
   }
-}
-
-.bracket-corners {
-  @apply text-white font-mono px-6 py-2 text-sm relative border-none outline-none overflow-visible transition-all duration-150;
-}
-
-.bracket-corners:hover {
-  @apply bg-black/30;
-}
-
-.bracket-corners::before,
-.bracket-corners::after,
-.bracket-corners .corner {
-  content: '';
-  @apply absolute w-4 h-4 border-2 border-primary pointer-events-none transition-transform duration-150;
-}
-
-.bracket-corners::before {
-  @apply top-0 left-0;
-  border-right: none;
-  border-bottom: none;
-}
-
-.bracket-corners::after {
-  @apply bottom-0 right-0;
-  border-left: none;
-  border-top: none;
-}
-
-.bracket-corners .corner.top-right {
-  @apply top-0 right-0;
-  border-left: none;
-  border-bottom: none;
-}
-
-.bracket-corners .corner.bottom-left {
-  @apply bottom-0 left-0;
-  border-right: none;
-  border-top: none;
-}
-
-.bracket-corners .corner {
-  content: '';
-  @apply absolute w-4 h-4 border-2 border-primary pointer-events-none transition-colors duration-150;
 }
