@@ -1,6 +1,6 @@
-'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = {
   '/': {
@@ -15,10 +15,10 @@ const navItems = {
   '/projects': {
     name: 'projects',
   },
-}
+};
 
 export function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
@@ -29,7 +29,7 @@ export function Navbar() {
         >
           <div className="flex flex-row space-x-0 pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
-              const isActive = pathname === path
+              const isActive = pathname === path;
               return (
                 <Link
                   key={path}
@@ -40,11 +40,11 @@ export function Navbar() {
                 >
                   #{name}
                 </Link>
-              )
+              );
             })}
           </div>
         </nav>
       </div>
     </aside>
-  )
+  );
 }

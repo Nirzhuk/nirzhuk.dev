@@ -1,32 +1,25 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/mdx'
-import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx'
-import { baseUrl } from 'app/sitemap'
-import { BlogPost } from 'app/components/posts'
+import { notFound } from 'next/navigation';
+import { CustomMDX } from 'app/components/mdx';
+import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx';
+import { baseUrl } from 'app/sitemap';
+import { BlogPost } from 'app/components/posts';
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts<BlogPost>()
+  let posts = getBlogPosts<BlogPost>();
 
-  return posts.map((post) => ({
+  return posts.map(post => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 export function generateMetadata({ params }) {
-  let post = getBlogPosts<BlogPost>().find((post) => post.slug === params.slug)
+  let post = getBlogPosts<BlogPost>().find(post => post.slug === params.slug);
   if (!post) {
-    return
+    return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata
-  let ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
+  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -49,14 +42,14 @@ export function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
 export default function Blog({ params }) {
-  let post = getBlogPosts<BlogPost>().find((post) => post.slug === params.slug)
+  let post = getBlogPosts<BlogPost>().find(post => post.slug === params.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -83,9 +76,7 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
+      <h1 className="title font-semibold text-2xl tracking-tighter">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
@@ -95,5 +86,5 @@ export default function Blog({ params }) {
         <CustomMDX source={post.content} />
       </article>
     </section>
-  )
+  );
 }

@@ -1,28 +1,25 @@
-import Link from 'next/link'
-import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx'
+import Link from 'next/link';
+import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx';
 
 export interface BlogPost extends BaseMetadata {
-  title: string
-  publishedAt: string
-  summary: string
+  title: string;
+  publishedAt: string;
+  summary: string;
 }
 
-
 export function BlogPosts() {
-  const allBlogs = getBlogPosts<BlogPost>()
+  const allBlogs = getBlogPosts<BlogPost>();
 
   return (
     <div>
       {allBlogs
         .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1
+          if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+            return -1;
           }
-          return 1
+          return 1;
         })
-        .map((post) => (
+        .map(post => (
           <Link
             key={post.slug}
             className="flex flex-col space-y-1 mb-4"
@@ -30,19 +27,17 @@ export function BlogPosts() {
           >
             <div className="w-full group flex flex-col gap-4">
               <div className="flex flex-row space-x-2 items-center justify-between">
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {post.metadata.title}
-              </p>
-              <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-xs">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-             </div>
-              <span className="text-primary/60 text-sm">
-                {post.metadata.summary}
-              </span>
+                <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+                  {post.metadata.title}
+                </p>
+                <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-xs">
+                  {formatDate(post.metadata.publishedAt, false)}
+                </p>
+              </div>
+              <span className="text-primary/60 text-sm">{post.metadata.summary}</span>
             </div>
           </Link>
         ))}
     </div>
-  )
+  );
 }
