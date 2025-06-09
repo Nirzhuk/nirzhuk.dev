@@ -1,85 +1,87 @@
+'use client';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
+
+const projects = [
+  {
+    name: 'Adophite',
+    url: 'https://adophite.com',
+    description:
+      'My biggest project ever created as one-man-army, one link bio solution to rule them all',
+    stack: 'Next.js,Phoenix Framework, Stripe, Tailwind/Shadcn, and Supabase',
+    color: '#e01818',
+    colorHover: '#f71919',
+  },
+  {
+    name: 'Monnie',
+    url: 'https://monnie.nirzhuk.dev',
+    description:
+      'Small app to do multiple currency rates at the same time with multiple other currencies, simple and minimalism',
+    stack: 'Expo, React Native, Tailwind/NativeWind, and Expo Router',
+    color: '#2b3dc7',
+    colorHover: '#3b4dc7',
+  },
+  {
+    name: 'Snackies',
+    url: 'https://snackies.app',
+    description: 'Calories tracker app for your daily meals.',
+    stack: 'React Native, Expo, Custom AI API (OpenAI), and NativeWind',
+    color: '#18e083',
+    colorHover: '#21f793',
+  },
+  {
+    name: 'interlinked.love',
+    url: 'https://interlinked.love',
+    description: 'Calendar app synced with people you invite and share your schedule with them.',
+    stack: 'Next.js, Tailwind/Shadcn, Stripe and Drizzle-ORM',
+    color: '#e018c2',
+    colorHover: '#f721d7',
+  },
+  {
+    name: 'wwa-builder',
+    url: 'https://wwa-builder.nirzhuk.dev',
+    description: 'A simple tool to build your own WWArmies Army and share them.',
+    stack: 'Next.js, Tailwind/Shadcn, Supabase',
+    color: '#e0a418',
+    colorHover: '#e1c369',
+  },
+  {
+    name: 'nirzhuk-dev',
+    url: 'https://nirzhuk.dev',
+    description: 'My personal website, where I share my thoughts, projects, and experiences.',
+    stack: 'Next.js, Tailwind/Shadcn, Supabase',
+    color: '#8be169',
+    colorHover: '#9be169',
+  },
+];
 
 export default function Page() {
   return (
     <div>
       <ul className="flex flex-col space-y-4 list-[diamond]">
-        <li>
-          <Link
-            href="https://adophite.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg flex gap-2 items-center font-semibold text-[#e01818] hover:text-[#f71919]"
-          >
-            Adophite
-            <ExternalLink strokeWidth={3} className="size-4" />
-          </Link>
-          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
-            Stacked with Next.js,Phoenix Framework, Stripe, Tailwind/Shadcn, and Supabase
-          </p>
-          <p>
-            My biggest project ever created as one-man-army, one link bio solution to rule them all
-          </p>
-        </li>
-        <li>
-          <Link
-            href="https://snackies.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg flex gap-2 items-center font-semibold text-[#18e083] hover:text-[#21f793] "
-          >
-            Snackies
-            <ExternalLink strokeWidth={3} className="size-4" />
-          </Link>
-          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
-            Stacked with React Native, Expo, Custom API AI, and NativeWind
-          </p>
-          <p>Calories tracker app for your daily meals.</p>
-        </li>
-        <li>
-          <Link
-            href="https://interlinked.love"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg flex gap-2 items-center   font-semibold text-[#e018c2] hover:text-[#f721d7] "
-          >
-            interlinked.love
-            <ExternalLink strokeWidth={3} className="size-4" />
-          </Link>
-          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
-            Stacked with Next.js, Tailwind/Shadcn, Stripe and Drizzle-ORM
-          </p>
-          <p>Calendar app synced with people you invite and share your schedule with them.</p>
-        </li>
-        <li>
-          <Link
-            href="https://wwa-builder.nirzhuk.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg flex gap-2 items-center font-semibold text-[#e0a418] hover:text-[#e1c369]"
-          >
-            wwa-builder
-            <ExternalLink strokeWidth={3} className="size-4" />
-          </Link>
-          <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">
-            Stacked with Next.js, Tailwind/Shadcn, Supabase
-          </p>
-          <p>A simple tool to build your own WWArmies Army and share them.</p>
-        </li>
-        <li>
-          <Link
-            href="/projects/nirzhuk-dev"
-            className="text-lg flex gap-2 items-center font-semibold text-primary hover:text-[#8be169]"
-          >
-            nirzhuk-dev
-            <ExternalLink strokeWidth={3} className="size-4" />
-          </Link>
-          <p>
-            {`My personal website, where I share my thoughts, projects, and
-            experiences.`}
-          </p>
-        </li>
+        {projects.map(project => (
+          <li key={project.name}>
+            <Link
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg flex gap-2 items-center font-semibold transition-colors"
+              style={
+                {
+                  color: project.color,
+                  '--hover-color': project.colorHover,
+                } as React.CSSProperties & { '--hover-color': string }
+              }
+              onMouseEnter={e => (e.currentTarget.style.color = project.colorHover)}
+              onMouseLeave={e => (e.currentTarget.style.color = project.color)}
+            >
+              {project.name}
+              <ExternalLink strokeWidth={3} className="size-4" />
+            </Link>
+            <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">{project.stack}</p>
+            <p className="text-sm mt-1">{project.description}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );
