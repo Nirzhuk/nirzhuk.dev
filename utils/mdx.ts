@@ -66,8 +66,8 @@ function getMDXData<T extends BaseMetadata>(dir) {
   });
 }
 
-export function getBlogPosts<T extends BaseMetadata>() {
-  return getMDXData<T>(path.join(process.cwd(), 'app', 'blog', 'posts'));
+export function getJournalPosts<T extends BaseMetadata>() {
+  return getMDXData<T>(path.join(process.cwd(), 'app', 'journal', 'posts'));
 }
 
 export function getWorkExperiences<T extends BaseMetadata>() {

@@ -13,8 +13,8 @@ import Clock from './components/clock';
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Nirzhuk Blog',
-    template: '%s | Nirzhuk Blog',
+    default: 'Nirzhuk',
+    template: '%s | Nirzhuk',
   },
   description: 'This is my portfolio.',
   openGraph: {

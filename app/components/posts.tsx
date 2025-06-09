@@ -1,18 +1,18 @@
 import Link from 'next/link';
-import { BaseMetadata, formatDate, getBlogPosts } from 'utils/mdx';
+import { BaseMetadata, formatDate, getJournalPosts } from 'utils/mdx';
 
-export interface BlogPost extends BaseMetadata {
+export interface JournalPost extends BaseMetadata {
   title: string;
   publishedAt: string;
   summary: string;
 }
 
-export function BlogPosts() {
-  const allBlogs = getBlogPosts<BlogPost>();
+export function JournalPosts() {
+  const allJournalPosts = getJournalPosts<JournalPost>();
 
   return (
     <div>
-      {allBlogs
+      {allJournalPosts
         .sort((a, b) => {
           if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
             return -1;
@@ -23,7 +23,7 @@ export function BlogPosts() {
           <Link
             key={post.slug}
             className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
+            href={`/journal/${post.slug}`}
           >
             <div className="w-full group flex flex-col gap-4">
               <div className="flex flex-row space-x-2 items-center justify-between">

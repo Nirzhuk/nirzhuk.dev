@@ -1,11 +1,11 @@
 import { baseUrl } from 'app/sitemap';
-import { getBlogPosts } from 'utils/mdx';
-import { BlogPost } from 'app/components/posts';
+import { getJournalPosts } from 'utils/mdx';
+import { JournalPost } from 'app/components/posts';
 
 export async function GET() {
-  let allBlogs = await getBlogPosts<BlogPost>();
+  let allJournalPosts = await getJournalPosts<JournalPost>();
 
-  const itemsXml = allBlogs
+  const itemsXml = allJournalPosts
     .sort((a, b) => {
       if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
         return -1;
@@ -16,7 +16,7 @@ export async function GET() {
       post =>
         `<item>
           <title>${post.metadata.title}</title>
-          <link>${baseUrl}/blog/${post.slug}</link>
+          <link>${baseUrl}/journal/${post.slug}</link>
           <description>${post.metadata.summary || ''}</description>
           <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
         </item>`
