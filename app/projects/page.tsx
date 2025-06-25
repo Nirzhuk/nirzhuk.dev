@@ -11,6 +11,7 @@ const projects = [
     stack: 'Next.js,Phoenix Framework, Stripe, Tailwind/Shadcn, and Supabase',
     color: '#e01818',
     colorHover: '#f71919',
+    deprecated: false,
   },
   {
     name: 'Monnie',
@@ -20,6 +21,16 @@ const projects = [
     stack: 'Expo, React Native, Tailwind/NativeWind, and Expo Router',
     color: '#2b3dc7',
     colorHover: '#3b4dc7',
+    deprecated: false,
+  },
+  {
+    name: 'Dither tool',
+    url: 'https://dither.nirzhuk.dev',
+    description: 'Small tool to dither images with multiple algorithms',
+    stack: 'Next.js, Tailwind/Shadcn',
+    color: '#383838',
+    colorHover: '#484848',
+    deprecated: false,
   },
   {
     name: 'Snackies',
@@ -28,6 +39,7 @@ const projects = [
     stack: 'React Native, Expo, Custom AI API (OpenAI), and NativeWind',
     color: '#18e083',
     colorHover: '#21f793',
+    deprecated: false,
   },
   {
     name: 'interlinked.love',
@@ -36,6 +48,7 @@ const projects = [
     stack: 'Next.js, Tailwind/Shadcn, Stripe and Drizzle-ORM',
     color: '#e018c2',
     colorHover: '#f721d7',
+    deprecated: false,
   },
   {
     name: 'wwa-builder',
@@ -44,6 +57,7 @@ const projects = [
     stack: 'Next.js, Tailwind/Shadcn, Supabase',
     color: '#e0a418',
     colorHover: '#e1c369',
+    deprecated: true,
   },
   {
     name: 'nirzhuk-dev',
@@ -52,6 +66,7 @@ const projects = [
     stack: 'Next.js, Tailwind/Shadcn, Supabase',
     color: '#8be169',
     colorHover: '#9be169',
+    deprecated: false,
   },
 ];
 
@@ -75,8 +90,8 @@ export default function Page() {
               onMouseEnter={e => (e.currentTarget.style.color = project.colorHover)}
               onMouseLeave={e => (e.currentTarget.style.color = project.color)}
             >
-              {project.name}
-              <ExternalLink strokeWidth={3} className="size-4" />
+              {project.name} <ExternalLink strokeWidth={3} className="size-4" />
+              {project.deprecated && <span className="text-gray-500 text-xs">deprecated</span>}
             </Link>
             <p className="text-neutral-400 dark:text-neutral-300 text-xs ml-4">{project.stack}</p>
             <p className="text-sm mt-1">{project.description}</p>
