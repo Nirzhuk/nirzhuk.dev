@@ -14,7 +14,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className="absolute top-2 right-4 flex flex-row items-center justify-center">
+    <div className="absolute bottom-2 right-4 sm:bottom-auto sm:top-2 sm:right-4 flex flex-row items-center justify-center">
       <div className="text-sm text-primary text-right">
         <div suppressHydrationWarning>{time.getFullYear()}</div>
         <div suppressHydrationWarning>

@@ -53,13 +53,12 @@ html:before {
   mix-blend-mode: overlay;
   pointer-events: none;
 }
+body {
+  overflow: hidden;
+}
 
 .main-background {
   background: #111b14;
-}
-
-.terminal-background {
-  position: relative;
 }
 
 @keyframes slideDown {
@@ -91,6 +90,9 @@ html:before {
   }
 }
 
+.terminal-background {
+  position: relative;
+}
 .terminal-background:after {
   content: '';
   pointer-events: none;
