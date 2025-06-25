@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={cx(
-        'text-white bg-gray-950 h-full',
+        'text-white bg-gray-950 h-full w-full',
         GeistSans.variable,
         GeistMono.variable,
         spaceMono.variable
