@@ -1,0 +1,139 @@
+/* Prose styles for markdown content */
+
+.prose .anchor {
+  position: absolute;
+  visibility: hidden;
+  text-decoration: none;
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  visibility: visible;
+}
+
+.prose a {
+  text-decoration: underline;
+  transition: all 0.2s ease;
+  text-decoration-color: #a3a3a3;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 0.1em;
+}
+
+.prose .anchor:after {
+  color: #d4d4d8;
+  content: '#';
+}
+
+.prose *:hover > .anchor {
+  visibility: visible;
+}
+
+.prose pre {
+  background-color: #fafafa;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid #e5e5e5;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.prose code {
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.prose pre code {
+  padding: 0;
+  border: initial;
+  line-height: 1.5;
+}
+
+.prose code span {
+  font-weight: 500;
+}
+
+.prose img {
+  /* Don't apply styles to next/image */
+  margin: 0;
+}
+
+.prose p {
+  margin: 1rem 0;
+  color: #262626;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.prose h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.prose h4 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.prose strong {
+  font-weight: 500;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+/* Hide scrollbars for code blocks */
+.prose pre::-webkit-scrollbar {
+  display: none;
+}
+
+.prose pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Diamond list styles */
+ul.list-\[diamond\] {
+  padding-left: 1.5rem;
+  list-style: none !important;
+}
+
+ul.list-\[diamond\] li::before {
+  content: '◆';
+  padding-right: 0.5rem;
+  color: currentColor;
+  position: absolute;
+  margin-left: -1.5rem;
+}

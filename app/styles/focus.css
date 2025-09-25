@@ -1,0 +1,32 @@
+/* Terminal-style focus ring - only for keyboard navigation */
+
+/* Remove focus outline for mouse clicks */
+*:focus {
+  outline: none;
+}
+
+/* Show focus ring only for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid rgba(16, 251, 136, 0.8);
+  outline-offset: 2px;
+}
+
+/* Specific element focus styles - keyboard only */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(16, 251, 136, 0.8);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(16, 251, 136, 0.3);
+}
+
+/* Interactive elements focus - keyboard only */
+[tabindex]:focus-visible,
+[role='button']:focus-visible,
+[role='link']:focus-visible {
+  outline: 2px solid rgba(16, 251, 136, 0.8);
+  outline-offset: 2px;
+  box-shadow: 0 0 12px rgba(16, 251, 136, 0.3);
+}

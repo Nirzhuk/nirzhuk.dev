@@ -1,0 +1,59 @@
+/* Base styles and utilities */
+
+/* Selection styles */
+::selection {
+  background-color: #009900;
+  color: #fefefe;
+}
+
+/* HTML base styles */
+html {
+  min-width: 360px;
+  font-family: var(--font-mono);
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+html:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 500;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* Main background */
+.main-background {
+  background: #111b14;
+}
+
+/* Table styles */
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Title utility */
+.title {
+  text-wrap: balance;
+}
+
+/* Input styles */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

@@ -25,7 +25,7 @@ interface WorkExperienceProps {
 
 const WorkExperience: React.FC<WorkExperienceProps> = ({ experience, index }) => {
   return (
-    <div className="flex h-full">
+    <div className="flex sm:flex-row flex-col h-full">
       <div className="text-left min-w-52 py-6 text-sm">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {experience.metadata.startDate} - {experience.metadata.endDate}
@@ -54,10 +54,6 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({ experience, index }) =>
                 </a>{' '}
                 <span className="text-lg text-neutral-300  mt-1">- {experience.metadata.role}</span>
               </h3>
-
-              <span className="text-xs font-mono text-neutral-500  mt-1">
-                {experience.metadata.location}
-              </span>
             </div>
           </div>
           <p className="text-sm text-neutral-500  mt-1">{experience.metadata.summary}</p>

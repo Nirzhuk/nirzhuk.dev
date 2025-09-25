@@ -14,8 +14,8 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className="absolute bottom-2 right-4 sm:bottom-auto sm:top-2 sm:right-4 flex flex-row items-center justify-center">
-      <div className="text-sm text-primary text-right">
+    <div className="absolute bottom-16 right-8 md:right-14 md:bottom-auto md:top-4 flex flex-row items-center justify-center">
+      <div className="text-sm text-terminal text-right">
         <div suppressHydrationWarning>{time.getFullYear()}</div>
         <div suppressHydrationWarning>
           {time.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}

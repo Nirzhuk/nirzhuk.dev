@@ -9,6 +9,7 @@ import PlausibleProvider from 'next-plausible';
 import Footer from './components/footer';
 import { baseUrl } from './sitemap';
 import Clock from './components/clock';
+import CRTEffects from './components/crt-effects';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -58,12 +59,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
     >
       <body className="main-background relative antialiased">
+        <img className="crt-frame" src="crt_green_mask.png" />
+        <CRTEffects />
+
         <PlausibleProvider domain="nirzhuk.dev" customDomain="https://plausible.nirzhuk.dev" />
         <Clock />
         <div className="terminal-background">
-          <main className="max-w-4xl mx-4  lg:mx-auto min-h-screen flex flex-col">
+          <main className="max-w-6xl m-8 lg:mx-auto h-full flex flex-col">
             <Navbar />
-            <section className="flex-1 flex flex-col space-y-4 items-center">{children}</section>
+            <section className="flex-1 flex flex-col space-y-4 items-center overflow-x-hidden overflow-y-auto">
+              {children}
+            </section>
             <Footer />
           </main>
         </div>
