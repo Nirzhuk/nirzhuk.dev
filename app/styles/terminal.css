@@ -154,3 +154,9 @@
     opacity: 0;
   }
 }
+
+.border-terminal {
+  box-shadow:
+    inset 0 0 10px #10fb8880,
+    0 0 10px #10fb8880;
+}

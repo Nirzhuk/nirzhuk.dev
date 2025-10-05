@@ -7,7 +7,16 @@ export type BaseMetadata = {
   summary?: string;
   image?: string;
 };
-
+interface WorkExperience extends BaseMetadata {
+  company: string;
+  companyUrl: string;
+  role: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  technologies: string[];
+}
 function parseFrontmatter<T extends BaseMetadata>(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   let match = frontmatterRegex.exec(fileContent);
@@ -70,8 +79,10 @@ export function getJournalPosts<T extends BaseMetadata>() {
   return getMDXData<T>(path.join(process.cwd(), 'app', 'journal', 'posts'));
 }
 
-export function getWorkExperiences<T extends BaseMetadata>() {
-  return getMDXData<T>(path.join(process.cwd(), 'app', 'work', 'experiences'));
+export function getWorkExperiences<T extends WorkExperience>() {
+  return getMDXData<T>(path.join(process.cwd(), 'app', 'work', 'experiences')).sort((a, b) => {
+    return new Date(b.metadata.startDate).getTime() - new Date(a.metadata.startDate).getTime();
+  });
 }
 
 export function formatDate(date: string, includeRelative = false) {

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     template: '%s | Nirzhuk',
   },
   description: 'This is my portfolio.',
+
   openGraph: {
     title: 'My Portfolio',
     description: 'This is my portfolio.',
@@ -45,7 +46,7 @@ const spaceMono = Space_Mono({
   variable: '--font-mono',
 });
 
-const cx = (...classes) => classes.filter(Boolean).join(' ');
+const cx = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -65,9 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PlausibleProvider domain="nirzhuk.dev" customDomain="https://plausible.nirzhuk.dev" />
         <Clock />
         <div className="terminal-background">
-          <main className="max-w-6xl m-8 lg:mx-auto h-full flex flex-col">
+          <main className="m-8 w-full h-full flex flex-col">
             <Navbar />
-            <section className="flex-1 flex flex-col space-y-4 items-center overflow-x-hidden overflow-y-auto">
+            <section className="flex-1 w-full flex flex-col space-y-4 items-center overflow-x-hidden overflow-y-auto">
               {children}
             </section>
             <Footer />

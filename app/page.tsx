@@ -1,19 +1,37 @@
 import { JournalPosts } from 'app/components/posts';
 import AvailableForWork from './components/available-for-work';
 
+import { WorkingOnProject } from './components/working-on-project';
+import { LastProject } from './components/last-project';
+
 export default function Page() {
   return (
-    <section>
-      <div className="mb-8">
-        <AvailableForWork />
-        <h1 className="text-2xl font-semibold">
-          John <span className="text-primary">"Nirzhuk"</span> Serrano
-        </h1>
+    <div className="max-w-xl">
+      <section>
+        <div className="mb-4">
+          <AvailableForWork />
+          <h1 className="text-2xl font-semibold">
+            I'm John <span className="text-primary">"Nirzhuk"</span> Serrano
+          </h1>
+        </div>
+        <p>
+          I work around the world, full-stack developer and <br /> mostly working on my side
+          projects.
+        </p>
+      </section>
+
+      <section className="flex justify-center">
+        <WorkingOnProject />
+      </section>
+
+      <div className="flex my-8 flex-row gap-4 ">
+        <section className="w-1/2">
+          <JournalPosts />
+        </section>
+        <section className="w-1/2">
+          <LastProject />
+        </section>
       </div>
-      <p className="mb-4">{`Full-stack developer, one man army, love to learn new things.`}</p>
-      <div className="my-8 max-w-2xl">
-        <JournalPosts />
-      </div>
-    </section>
+    </div>
   );
 }
