@@ -6,12 +6,12 @@ import { Categories, projects } from './data';
 
 export default function Page() {
   return (
-    <div className="w-full max-w-5xl mx-auto grid grid-cols-1 gap-2 p-6">
+    <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-2 p-6">
       {projects.map((project, index) => (
         <div
           id={project.name}
           key={`${project.name}-${index}`}
-          className="group flex flex-col gap-2 relative min-h-[200px] bg-black/30 border border-primary/30 p-3 transition-transform duration-200 hover:scale-102.5"
+          className="group flex flex-col gap-2 relative min-h-[200px] rounded-xl hover:bg-terminal/20 hover:border-terminal/40 hover:shadow-terminal/30 transition-all duration-200 flex-auto p-3 bg-gradient-to-br from-green-500/20 to-emerald-500/10 border border-green-500/30 "
         >
           <Link
             href={project.url}
