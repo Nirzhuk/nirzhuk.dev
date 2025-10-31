@@ -1,9 +1,9 @@
 import { baseUrl } from 'app/sitemap';
 import { getJournalPosts } from 'utils/mdx';
-import { JournalPost } from 'app/components/posts';
+import { JournalPost } from '@/components/posts';
 
 export async function GET() {
-  let allJournalPosts = await getJournalPosts<JournalPost>();
+  let allJournalPosts = getJournalPosts<JournalPost>();
 
   const itemsXml = allJournalPosts
     .sort((a, b) => {

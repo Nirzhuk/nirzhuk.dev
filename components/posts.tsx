@@ -27,14 +27,12 @@ export function JournalPosts() {
           >
             <div className="w-full group flex flex-col gap-4">
               <div className="flex flex-row space-x-2 items-center justify-between">
-                <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                  {post.metadata.title}
-                </p>
-                <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-xs">
+                <p className="text-primary tracking-tight">{post.metadata.title}</p>
+                <p className="text-terminal tabular-nums text-xs">
                   {formatDate(post.metadata.publishedAt, false)}
                 </p>
               </div>
-              <span className="text-primary/60 text-sm">{post.metadata.summary}</span>
+              <span className=" text-sm">{post.metadata.summary}</span>
             </div>
           </Link>
         ))}

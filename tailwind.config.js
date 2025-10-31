@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: 'var(--color-primary)',
+        terminal: 'var(--color-terminal)',
+        // Map CSS variable tokens so utilities like `border-border` work
+        border: 'var(--border)',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        ring: 'var(--ring)',
+      },
       keyframes: {
         fadeInUp: {
           '0%': {
@@ -24,5 +33,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
 };

@@ -1,6 +1,6 @@
 import { getWorkExperiences } from 'utils/mdx';
 import type { BaseMetadata } from 'utils/mdx';
-import { CustomMDX } from 'app/components/mdx';
+import { CustomMDX } from '@/components/mdx';
 import React from 'react';
 import styles from './work.module.css';
 
@@ -11,7 +11,6 @@ interface WorkExperience extends BaseMetadata {
   location: string;
   startDate: string;
   endDate: string;
-  type: string;
   technologies: string[];
 }
 

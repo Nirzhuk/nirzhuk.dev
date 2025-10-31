@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
-import { CustomMDX } from 'app/components/mdx';
-import { BaseMetadata, formatDate, getJournalPosts } from 'utils/mdx';
+import { CustomMDX } from '@/components/mdx';
+import { formatDate, getJournalPosts } from 'utils/mdx';
 import { baseUrl } from 'app/sitemap';
-import { JournalPost } from 'app/components/posts';
+import { JournalPost } from '@/components/posts';
 
 export async function generateStaticParams() {
   let posts = getJournalPosts<JournalPost>();
@@ -45,8 +45,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Journal({ params }) {
-  let post = getJournalPosts<JournalPost>().find(post => post.slug === params.slug);
+export default async function Journal({ params }) {
+  const { slug } = await params;
+  let post = getJournalPosts<JournalPost>().find(post => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -76,11 +77,11 @@ export default function Journal({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">{post.metadata.title}</h1>
+      <h1 className="text-primary font-semibold text-2xl tracking-tighter">
+        {post.metadata.title}
+      </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
+        <p className="text-sm text-terminal">{formatDate(post.metadata.publishedAt)}</p>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />

@@ -1,4 +1,4 @@
-import { JournalPosts } from 'app/components/posts';
+import { JournalPosts } from '@/components/posts';
 
 export const metadata = {
   title: 'Journal',
