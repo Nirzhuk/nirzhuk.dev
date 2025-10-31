@@ -4,12 +4,12 @@ import { Space_Mono } from 'next/font/google';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { Navbar } from '../components/nav';
-import PlausibleProvider from 'next-plausible';
 
 import Footer from '../components/footer';
 import { baseUrl } from './sitemap';
 import Clock from '../components/clock';
 import CRTEffects from '../components/crt-effects';
+import { OpenPanelComponent } from '@openpanel/nextjs';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -63,7 +63,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <img className="crt-frame" src="crt_green_mask.png" />
         <CRTEffects />
 
-        <PlausibleProvider domain="nirzhuk.dev" customDomain="https://plausible.nirzhuk.dev" />
+        <OpenPanelComponent
+          clientId="3bef1048-38d5-4a29-bc22-e60bb2578d86"
+          trackScreenViews={true}
+          trackAttributes={true}
+          trackOutgoingLinks={true}
+        />
         <Clock />
         <div className="terminal-background">
           <main className="p-4 sm:p-8 w-full h-full flex flex-col">
