@@ -1,22 +1,12 @@
-import { getWorkExperiences } from 'utils/mdx';
+import { getWorkExperiences, type WorkExperience as WorkExperienceType } from 'utils/mdx';
 import type { BaseMetadata } from 'utils/mdx';
 import { CustomMDX } from '@/components/mdx';
 import React from 'react';
 import styles from './work.module.css';
 
-interface WorkExperience extends BaseMetadata {
-  company: string;
-  companyUrl: string;
-  role: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  technologies: string[];
-}
-
 interface WorkExperienceProps {
   experience: {
-    metadata: WorkExperience;
+    metadata: WorkExperienceType;
     content: string;
   };
   index: number;
@@ -66,7 +56,7 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({ experience, index }) =>
 };
 
 const WorkPage = () => {
-  const workExperiences = getWorkExperiences<WorkExperience>();
+  const workExperiences = getWorkExperiences<WorkExperienceType>();
 
   return (
     <div className="max-w-5xl mx-auto py-8 px-4">

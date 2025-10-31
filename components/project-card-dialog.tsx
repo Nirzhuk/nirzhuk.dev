@@ -13,7 +13,7 @@ import Image from 'next/image';
 
 interface ProjectCardDialogProps {
   project: Project;
-  children: React.ReactNode;
+  children: React.ReactElement;
   className?: string;
   mobileFullScreen?: boolean;
 }

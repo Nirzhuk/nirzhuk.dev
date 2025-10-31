@@ -7,7 +7,7 @@ export type BaseMetadata = {
   summary?: string;
   image?: string;
 };
-interface WorkExperience extends BaseMetadata {
+export interface WorkExperience extends BaseMetadata {
   company: string;
   companyUrl: string;
   role: string;
