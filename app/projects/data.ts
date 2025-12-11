@@ -13,6 +13,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'Animalese Generator',
+    url: 'https://animalese-generator-weld.vercel.app/',
+    source: 'https://github.com/nirzhuk/animalese-generator',
+    description:
+      'Generate Animal Crossing-style speech from text. Convert any text to animalese sounds with customizable voice settings, pitch, and timing.',
+    stack: ['Next.js', 'Tailwind CSS', 'Web Audio API'],
+    color: '#7ec850',
+    colorHover: '#8fd861',
+    deprecated: false,
+    categories: ['Web Tool', 'All'],
+  },
+  {
     name: 'Monnie',
     url: 'https://monnie.nirzhuk.dev',
     description:

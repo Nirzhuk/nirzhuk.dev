@@ -9,7 +9,7 @@ export type BaseMetadata = {
 };
 export interface WorkExperience extends BaseMetadata {
   company: string;
-  companyUrl: string;
+  companyUrl?: string;
   role: string;
   location: string;
   startDate: string;
@@ -17,18 +17,50 @@ export interface WorkExperience extends BaseMetadata {
   type: string;
   technologies: string[];
 }
+
 function parseFrontmatter<T extends BaseMetadata>(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, '').trim();
-  let frontMatterLines = frontMatterBlock.trim().split('\n');
-  let metadata: Partial<T> = {};
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const match = frontmatterRegex.exec(fileContent);
+  const frontMatterBlock = match![1];
+  const content = fileContent.replace(frontmatterRegex, '').trim();
+
+  const metadata: Partial<T> = {};
+
+  // Handle multiline arrays by first joining them
+  let normalizedBlock = frontMatterBlock;
+
+  // Find multiline arrays and join them into single lines
+  normalizedBlock = normalizedBlock.replace(
+    /(\w+):\s*\n\s*\[([^\]]*)\]/g,
+    (_, key, arrayContent) => {
+      const items = arrayContent
+        .split('\n')
+        .map((line: string) => line.trim())
+        .filter((line: string) => line && line !== '[' && line !== ']')
+        .join(' ');
+      return `${key}: [${items}]`;
+    }
+  );
+
+  const frontMatterLines = normalizedBlock.trim().split('\n');
 
   frontMatterLines.forEach(line => {
-    let [key, ...valueArr] = line.split(': ');
-    let value = valueArr.join(': ').trim();
-    value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
+    // Skip empty lines or lines that are just array content
+    if (!line.trim() || line.trim().startsWith("'") || line.trim() === '[' || line.trim() === ']') {
+      return;
+    }
+
+    const colonIndex = line.indexOf(':');
+    if (colonIndex === -1) return;
+
+    const key = line.slice(0, colonIndex).trim();
+    let value = line.slice(colonIndex + 1).trim();
+
+    // Skip if no key
+    if (!key) return;
+
+    // Remove quotes from value
+    value = value.replace(/^['"](.*)['"]$/, '$1');
 
     // Handle arrays
     if (value.startsWith('[') && value.endsWith(']')) {
@@ -38,33 +70,34 @@ function parseFrontmatter<T extends BaseMetadata>(fileContent: string) {
         // Split by comma and clean up each item
         const items = arrayContent
           .split(',')
-          .map(item => item.trim().replace(/^['"](.*)['"]$/, '$1'));
-        metadata[key.trim() as keyof T] = items as T[keyof T];
+          .map(item => item.trim().replace(/^['"](.*)['"]$/, '$1'))
+          .filter(item => item); // Filter out empty items
+        metadata[key as keyof T] = items as T[keyof T];
       } else {
-        metadata[key.trim() as keyof T] = [] as T[keyof T];
+        metadata[key as keyof T] = [] as T[keyof T];
       }
-    } else {
-      metadata[key.trim() as keyof T] = value as T[keyof T];
+    } else if (value) {
+      metadata[key as keyof T] = value as T[keyof T];
     }
   });
 
   return { metadata: metadata as T, content };
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter(file => path.extname(file) === '.mdx');
 }
 
-function readMDXFile<T extends BaseMetadata>(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8');
+function readMDXFile<T extends BaseMetadata>(filePath: string) {
+  const rawContent = fs.readFileSync(filePath, 'utf-8');
   return parseFrontmatter<T>(rawContent);
 }
 
-function getMDXData<T extends BaseMetadata>(dir) {
-  let mdxFiles = getMDXFiles(dir);
+function getMDXData<T extends BaseMetadata>(dir: string) {
+  const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map(file => {
-    let { metadata, content, ...rest } = readMDXFile<T>(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+    const { metadata, content, ...rest } = readMDXFile<T>(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
 
     return {
       metadata,
