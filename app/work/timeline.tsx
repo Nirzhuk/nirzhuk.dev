@@ -143,7 +143,7 @@ export const Timeline: React.FC<TimelineProps> = ({ experiences, waypoints }) =>
   };
 
   return (
-    <div className="max-w-4xl min-w-4xl mx-auto py-8 px-4">
+    <div className="max-w-4xl w-full sm:min-w-4xl mx-auto sm:py-8 sm:px-4 ">
       <h1 className="font-mono text-xs uppercase tracking-[0.2em] text-terminal/70 mb-8 drop-shadow-[0_0_5px_rgba(16,251,136,0.4)]">
         {'>'} Career_Journey
       </h1>
