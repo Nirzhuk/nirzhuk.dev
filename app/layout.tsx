@@ -64,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CRTEffects />
 
         <OpenPanelComponent
+          apiUrl="https://opapi.nirzhuk.dev"
           clientId="3bef1048-38d5-4a29-bc22-e60bb2578d86"
           trackScreenViews={true}
           trackAttributes={true}
