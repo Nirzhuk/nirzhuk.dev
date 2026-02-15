@@ -13,6 +13,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'NetHaven',
+    url: 'https://nethaven.app/',
+
+    description:
+      'NetHaven is a mobile app that allows you to manage your net worth and personal finances.',
+    stack: ['React Native', 'Expo', 'Tailwind/NativeWind', 'Expo Router'],
+    color: '#7ec850',
+    colorHover: '#8fd861',
+    deprecated: false,
+    categories: ['Mobile App', 'Web App', 'All'],
+  },
+  {
     name: 'Animalese Generator',
     url: 'https://animalese-generator-weld.vercel.app/',
     source: 'https://github.com/nirzhuk/animalese-generator',

@@ -25,6 +25,15 @@ export const waypoints: Waypoint[] = [
     type: 'personal',
     icon: '🌍',
   },
+  {
+    id: ' ',
+    title: 'Start Working on NetHaven',
+    description:
+      'Started working on NetHaven, a mobile app that allows you to manage your net worth and personal finances.',
+    date: 'Oct 2025',
+    type: 'personal',
+    icon: '💰',
+  },
 ];
 
 // Helper to parse date string to year for timeline positioning

@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Clock />
         <div className="terminal-background">
-          <main className="p-4 sm:p-8 w-full h-full flex flex-col">
+          <main className="p-4 pb-2 sm:pb-8 sm:p-8 w-full h-full flex flex-col">
             <Navbar />
             <section className="flex-1 w-full flex flex-col space-y-4 items-center overflow-x-hidden overflow-y-auto">
               {children}

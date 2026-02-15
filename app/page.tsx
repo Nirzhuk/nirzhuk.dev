@@ -1,5 +1,6 @@
 import { JournalPosts } from '@/components/posts';
 import AvailableForWork from '../components/available-for-work';
+import BlobLoader from '@/components/blob/BlobLoader';
 
 export default function Page() {
   return (
@@ -13,11 +14,13 @@ export default function Page() {
         </div>
       </section>
 
-      <div className="flex my-8 flex-row gap-4 ">
-        <section className="w-1/2">
+      <div className="flex my-8 sm:flex-row flex-col gap-4 ">
+        <section className="sm:w-1/2 w-full">
           <JournalPosts />
         </section>
-        <section className="w-1/2"></section>
+        <section className="sm:w-1/3 flex justify-center items-start">
+          <BlobLoader />
+        </section>
       </div>
     </div>
   );

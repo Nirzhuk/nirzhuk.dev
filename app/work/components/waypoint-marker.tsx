@@ -102,7 +102,7 @@ export const WaypointMarker: React.FC<WaypointMarkerProps> = ({ waypoint, index,
 
           {/* Content */}
           <div
-            className="absolute left-8 top-0 z-50 w-auto min-w-[200px] max-w-[280px] p-3 bg-neutral-950/40 border border-terminal/50 rounded-lg backdrop-blur-md shadow-[0_0_25px_rgba(16,251,136,0.3)] animate-in fade-in zoom-in-95 duration-200"
+            className="absolute left-8 top-0 z-50 w-auto min-w-[200px] max-w-[280px] p-3 bg-neutral-950/80 border border-terminal/50 rounded-lg backdrop-blur-md shadow-[0_0_25px_rgba(16,251,136,0.3)] animate-in fade-in zoom-in-95 duration-200"
             onClick={e => e.stopPropagation()}
           >
             <WaypointContent />
