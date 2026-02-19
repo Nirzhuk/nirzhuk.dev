@@ -21,7 +21,10 @@ export interface WorkExperience extends BaseMetadata {
 function parseFrontmatter<T extends BaseMetadata>(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
-  const frontMatterBlock = match![1];
+  if (!match) {
+    return { metadata: {} as T, content: fileContent.trim() };
+  }
+  const frontMatterBlock = match[1];
   const content = fileContent.replace(frontmatterRegex, '').trim();
 
   const metadata: Partial<T> = {};

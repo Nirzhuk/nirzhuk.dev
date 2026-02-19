@@ -55,7 +55,7 @@ function RoundedImage(props) {
 
 function Code({ children, ...props }) {
   let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  return <code className="bg-red-500" dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
 function slugify(str) {

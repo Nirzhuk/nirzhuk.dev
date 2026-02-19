@@ -33,10 +33,10 @@
 }
 
 .prose pre {
-  background-color: #fafafa;
+  background-color: rgba(0, 0, 0, 0.91);
   border-radius: 0.5rem;
   overflow-x: auto;
-  border: 1px solid #e5e5e5;
+
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
 }

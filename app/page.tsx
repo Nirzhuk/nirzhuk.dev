@@ -1,6 +1,7 @@
 import { JournalPosts } from '@/components/posts';
 import AvailableForWork from '../components/available-for-work';
 import BlobLoader from '@/components/blob/BlobLoader';
+import MarqueeLoader from '@/components/marquee/MarqueeLoader';
 
 export default function Page() {
   return (
@@ -22,6 +23,7 @@ export default function Page() {
           <BlobLoader />
         </section>
       </div>
+      <MarqueeLoader />
     </div>
   );
 }
