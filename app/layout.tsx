@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <OpenPanelComponent
           apiUrl="/api/op"
           cdnUrl="/api/op/op1.js"
-          clientId="3bef1048-38d5-4a29-bc22-e60bb2578d86"
+          clientId="cdd0da38-8a1b-4919-826f-42609468a2b7"
           trackScreenViews={true}
           trackAttributes={true}
           trackOutgoingLinks={true}
