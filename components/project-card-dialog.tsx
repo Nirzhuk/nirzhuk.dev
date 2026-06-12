@@ -56,8 +56,6 @@ export function ProjectCardDialog({
                         <div className="relative w-[200px] shrink-0">
                           {/* phone shell */}
                           <div className="relative w-full rounded-[2.5rem] bg-neutral-800 border-[6px] border-neutral-700 shadow-xl overflow-hidden aspect-[9/19]">
-                            {/* notch */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-neutral-800 rounded-b-2xl z-10" />
                             <Image
                               src={image}
                               alt={`${project.name} screenshot ${index + 1}`}
@@ -65,8 +63,6 @@ export function ProjectCardDialog({
                               className="object-cover"
                             />
                           </div>
-                          {/* home indicator */}
-                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-neutral-600 rounded-full" />
                         </div>
                       </CarouselItem>
                     ))}
