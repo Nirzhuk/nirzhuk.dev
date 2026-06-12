@@ -18,7 +18,7 @@ export const waypoints: Waypoint[] = [
   },
   // Add more waypoints as needed
   {
-    id: ' ',
+    id: 'digital-nomad',
     title: 'Digital Nomad',
     description: 'Worked remotely from different countries',
     date: 'May 2024',
@@ -26,13 +26,22 @@ export const waypoints: Waypoint[] = [
     icon: '🌍',
   },
   {
-    id: ' ',
+    id: 'start-working-on-nethaven',
     title: 'Start Working on NetHaven',
     description:
       'Started working on NetHaven, a mobile app that allows you to manage your net worth and personal finances.',
     date: 'Oct 2025',
     type: 'personal',
     icon: '💰',
+  },
+  {
+    id: 'release-nethaven',
+    title: 'Release NetHaven',
+    description:
+      'Released NetHaven, a mobile app that allows you to manage your net worth and personal finances.',
+    date: 'Jun 2026',
+    type: 'personal',
+    icon: '🎉',
   },
 ];
 

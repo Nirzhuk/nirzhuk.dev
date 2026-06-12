@@ -47,25 +47,53 @@ export function ProjectCardDialog({
             </div>
           )}
           {project.images?.length ? (
-            <div className="flex-1 w-full bg-neutral-900 rounded-lg  overflow-hidden">
-              <Carousel className="w-full h-full " fill>
-                <CarouselContent fill className="h-full ">
-                  {project.images.map((image, index) => (
-                    <CarouselItem key={index} className="h-full">
-                      <div className="w-full h-full border border-green-700/30 rounded-lg overflow-hidden">
-                        <Image
-                          src={image}
-                          alt={project.name}
-                          width={700}
-                          height={300}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
-            </div>
+            project.isMobileApp ? (
+              <div className="w-full flex justify-center py-2">
+                <Carousel className="w-full max-w-xs">
+                  <CarouselContent>
+                    {project.images.map((image, index) => (
+                      <CarouselItem key={index} className="flex justify-center">
+                        <div className="relative w-[200px] shrink-0">
+                          {/* phone shell */}
+                          <div className="relative w-full rounded-[2.5rem] bg-neutral-800 border-[6px] border-neutral-700 shadow-xl overflow-hidden aspect-[9/19]">
+                            {/* notch */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-neutral-800 rounded-b-2xl z-10" />
+                            <Image
+                              src={image}
+                              alt={`${project.name} screenshot ${index + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          {/* home indicator */}
+                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-neutral-600 rounded-full" />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </div>
+            ) : (
+              <div className="flex-1 w-full bg-neutral-900 rounded-lg overflow-hidden">
+                <Carousel className="w-full h-full" fill>
+                  <CarouselContent fill className="h-full">
+                    {project.images.map((image, index) => (
+                      <CarouselItem key={index} className="h-full">
+                        <div className="w-full h-full border border-green-700/30 rounded-lg overflow-hidden">
+                          <Image
+                            src={image}
+                            alt={project.name}
+                            width={700}
+                            height={300}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </div>
+            )
           ) : (
             <div className="flex-1 w-full bg-neutral-900 rounded-lg border border-green-700/30" />
           )}

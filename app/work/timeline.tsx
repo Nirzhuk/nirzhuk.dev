@@ -32,27 +32,22 @@ interface PositionedExperience {
   totalColumns: number;
 }
 
-// Check if two experiences overlap in time
-function experiencesOverlap(a: Experience, b: Experience): boolean {
-  // Parse dates - startDate is earlier, endDate is later
-  // parseDateToDecimalYear returns lower values for earlier dates
-  const aStart = parseDateToDecimalYear(a.metadata.startDate);
-  const aEnd = parseDateToDecimalYear(a.metadata.endDate);
-  const bStart = parseDateToDecimalYear(b.metadata.startDate);
-  const bEnd = parseDateToDecimalYear(b.metadata.endDate);
+const MIN_CARD_HEIGHT = 50;
 
-  // Two ranges overlap if they share actual time (not just touching edges)
-  // Use strict greater than to exclude consecutive jobs where one ends as another starts
-  // e.g., Job A ends Feb 2024, Job B starts Feb 2024 = NOT overlapping (consecutive)
-  return aEnd > bStart && bEnd > aStart;
+// Check if two positioned cards visually overlap (pixel ranges)
+function cardsVisuallyOverlap(
+  aTop: number,
+  aHeight: number,
+  bTop: number,
+  bHeight: number,
+): boolean {
+  return aTop + aHeight > bTop && bTop + bHeight > aTop;
 }
 
 // Group overlapping experiences and assign columns
 function positionExperiences(experiences: Experience[]): PositionedExperience[] {
-  // Filter out freelance
   const filteredExps = experiences.filter(exp => exp.metadata.company !== 'Freelance');
 
-  // Sort by start date (most recent first)
   const sortedExps = [...filteredExps].sort((a, b) => {
     return (
       parseDateToDecimalYear(b.metadata.startDate) - parseDateToDecimalYear(a.metadata.startDate)
@@ -64,50 +59,36 @@ function positionExperiences(experiences: Experience[]): PositionedExperience[] 
   for (const exp of sortedExps) {
     const startPos = getPositionFromDate(exp.metadata.startDate);
     const endPos = getPositionFromDate(exp.metadata.endDate);
-    const height = Math.max(startPos - endPos, 50);
+    const height = Math.max(startPos - endPos, MIN_CARD_HEIGHT);
     const top = endPos;
 
-    // Find all already positioned experiences that overlap with this one
-    const overlapping = positioned.filter(p => experiencesOverlap(exp, p.experience));
+    // Find all already positioned cards that visually overlap with this one
+    const overlapping = positioned.filter(p =>
+      cardsVisuallyOverlap(top, height, p.top, p.height),
+    );
 
     if (overlapping.length === 0) {
-      // No overlap, full width
-      positioned.push({
-        experience: exp,
-        top,
-        height,
-        column: 0,
-        totalColumns: 1,
-      });
+      positioned.push({ experience: exp, top, height, column: 0, totalColumns: 1 });
     } else {
-      // Find which columns are taken
       const usedColumns = new Set(overlapping.map(o => o.column));
       const maxColumns = Math.max(...overlapping.map(o => o.totalColumns), 2);
 
-      // Find first available column
       let column = 0;
       for (let i = 0; i < maxColumns; i++) {
         if (!usedColumns.has(i)) {
           column = i;
           break;
         }
-        column = maxColumns; // Need a new column
+        column = maxColumns;
       }
 
       const totalColumns = Math.max(maxColumns, column + 1);
 
-      // Update all overlapping experiences to use the new total columns
       for (const o of overlapping) {
         o.totalColumns = totalColumns;
       }
 
-      positioned.push({
-        experience: exp,
-        top,
-        height,
-        column,
-        totalColumns,
-      });
+      positioned.push({ experience: exp, top, height, column, totalColumns });
     }
   }
 

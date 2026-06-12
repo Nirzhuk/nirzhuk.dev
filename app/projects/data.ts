@@ -9,6 +9,7 @@ export interface Project {
   deprecated: boolean;
   categories: string[];
   images?: string[];
+  isMobileApp?: boolean;
 }
 
 export const projects: Project[] = [
@@ -17,12 +18,32 @@ export const projects: Project[] = [
     url: 'https://nethaven.app/',
 
     description:
-      'NetHaven is a mobile app that allows you to manage your net worth and personal finances.',
-    stack: ['React Native', 'Expo', 'Tailwind/NativeWind', 'Expo Router'],
+      'Track your net worth, portfolio, and spending in one premium personal finance dashboard. NetHaven brings every dollar you own and owe into a single, beautifully clear view — built for people who take their money seriously, not just budgeters, but builders.\n\nGet real-time net worth across every account, holding, and asset. Track your portfolio for stocks, crypto, and retirement accounts. Monitor subscriptions and bills, categorize expenses automatically, plan debt payoff and savings goals, and budget based on how you actually spend.\n\nMost personal finance apps make you choose: a budget planner or a portfolio app. NetHaven is both. Your data stays yours — bank-grade encryption, no selling, no ads.\n\nStart with a 7-day free trial. Cancel anytime.',
+    stack: [
+      'React Native',
+      'PostgresQL',
+      'Hono',
+      'TRPC',
+      'Tanstack Start',
+      'React Native Reanimated',
+      'Expo',
+      'Tailwind/NativeWind',
+      'Expo Router',
+    ],
     color: '#7ec850',
     colorHover: '#8fd861',
     deprecated: false,
     categories: ['Mobile App', 'Web App', 'All'],
+    isMobileApp: true,
+    images: [
+      '/projects/nethaven/1.png',
+      '/projects/nethaven/2.png',
+      '/projects/nethaven/3.png',
+      '/projects/nethaven/4.png',
+      '/projects/nethaven/5.png',
+      '/projects/nethaven/6.png',
+      '/projects/nethaven/7.png',
+    ],
   },
   {
     name: 'Animalese Generator',
