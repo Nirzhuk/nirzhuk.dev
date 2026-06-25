@@ -255,7 +255,7 @@ function ScrollingRow({ text, y, speed, color, height, opacity }: ScrollingRowPr
 
 const ROWS = [
   {
-    text: '> Working right now on NetHaven coming soon in March   Learning Solidity, Rust & ThreeJS   Maybe you should click on me',
+    text: '> NetHaven released! check it out at https://nethaven.app   Learning Solidity, Rust & ThreeJS',
     speed: 1.0,
     color: TERMINAL_GREEN,
     y: 0,
