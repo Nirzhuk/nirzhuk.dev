@@ -71,6 +71,7 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   margin: 1.5rem 0 0.5rem 0;
+  clear: both;
 }
 
 .prose h2 {
@@ -78,6 +79,7 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   margin: 1.5rem 0 0.5rem 0;
+  clear: both;
 }
 
 .prose h3 {
@@ -85,6 +87,7 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   margin: 1.5rem 0 0.5rem 0;
+  clear: both;
 }
 
 .prose h4 {
@@ -92,6 +95,13 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   margin: 1.5rem 0 0.5rem 0;
+  clear: both;
+}
+
+.prose::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .prose strong {

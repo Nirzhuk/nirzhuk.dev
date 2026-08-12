@@ -79,13 +79,21 @@
     0 0 4px rgba(0, 255, 65, 0.1);
 }
 
-/* Text distortion effect */
+/* Text distortion effect — skip .prose so floated media can wrap text */
 .terminal-background p,
 .terminal-background span,
 .terminal-background div,
 .terminal-background a {
   transform: perspective(1000px) rotateX(1deg);
   filter: contrast(1.05) brightness(1.02);
+}
+
+.terminal-background .prose p,
+.terminal-background .prose span,
+.terminal-background .prose div,
+.terminal-background .prose a,
+.terminal-background .prose figure {
+  transform: none;
 }
 
 /* Footer positioning */

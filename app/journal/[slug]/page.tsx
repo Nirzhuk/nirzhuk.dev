@@ -55,7 +55,7 @@ export default async function Journal({ params }) {
   }
 
   return (
-    <section>
+    <section className="w-full max-w-2xl mx-auto">
       <script
         type="application/ld+json"
         suppressHydrationWarning

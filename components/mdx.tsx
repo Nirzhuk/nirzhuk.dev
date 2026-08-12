@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ImageWithPlaceholder } from '@/components/image-with-placeholder';
+import { PhoneShell } from '@/components/phone-shell';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { highlight } from 'sugar-high';
 import React from 'react';
@@ -46,8 +47,8 @@ function RoundedImage(props) {
   return (
     <ImageWithPlaceholder
       alt={props.alt}
-      className="rounded-lg"
-      containerClassName="rounded-lg"
+      className="rounded-lg max-w-full h-auto"
+      containerClassName="rounded-lg my-6 max-w-full w-fit"
       {...props}
     />
   );
@@ -111,6 +112,7 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   Image: RoundedImage,
+  Phone: PhoneShell,
   a: CustomLink,
   code: Code,
   Table,
