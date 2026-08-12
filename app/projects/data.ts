@@ -18,7 +18,7 @@ export const projects: Project[] = [
     url: 'https://nethaven.app/',
 
     description:
-      'Cross-platform personal finance app for net worth tracking, portfolio monitoring, and expense management. Aggregates linked bank, brokerage, and crypto accounts to compute net worth across assets and liabilities.\n\nHandles transaction sync and categorization, subscription detection, budgeting, debt payoff planning, and savings goals. Supports stocks, crypto, and retirement account holdings.\n\nBuilt with Expo/React Native (iOS and Android), TanStack Start for web, a Hono + tRPC API, and PostgreSQL.',
+      'Personal finance dashboard that syncs banks, brokerages, and crypto into one live net worth view — with budgets, subscriptions, debt payoff, and savings goals updating as money moves. Available on iOS, Android, and the web.',
     stack: [
       'React Native',
       'PostgresQL',

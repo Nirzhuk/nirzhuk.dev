@@ -12,8 +12,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
-  let post = getJournalPosts<JournalPost>().find(post => post.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  let post = getJournalPosts<JournalPost>().find(post => post.slug === slug);
   if (!post) {
     return;
   }
