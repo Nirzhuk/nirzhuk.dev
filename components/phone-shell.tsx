@@ -12,8 +12,8 @@ export function PhoneShell({ src, alt, side = 'right', className }: PhoneShellPr
   return (
     <figure
       className={cn(
-        'my-4 w-[160px] sm:w-[200px]',
-        side === 'right' ? 'sm:float-right sm:ml-6' : 'sm:float-left sm:mr-6',
+        'my-6 w-[160px] sm:w-[200px]',
+        side === 'right' ? 'sm:float-right sm:ml-10 sm:mb-8' : 'sm:float-left sm:mr-10 sm:mb-8',
         'mx-auto sm:mx-0',
         className
       )}

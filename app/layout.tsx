@@ -10,22 +10,29 @@ import { baseUrl } from './sitemap';
 import Clock from '../components/clock';
 import CRTEffects from '../components/crt-effects';
 import { OpenPanelComponent } from '@openpanel/nextjs';
+import { SITE } from 'utils/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Nirzhuk',
-    template: '%s | Nirzhuk',
+    default: SITE.title,
+    template: `%s | ${SITE.name}`,
   },
-  description: 'This is my portfolio.',
+  description: SITE.description,
 
   openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
+    title: SITE.title,
+    description: SITE.description,
     url: baseUrl,
-    siteName: 'My Portfolio',
+    siteName: SITE.name,
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE.title,
+    description: SITE.description,
+    creator: '@nirzhuk',
   },
   robots: {
     index: true,
@@ -60,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
     >
       <body className="main-background relative antialiased">
-        <img className="crt-frame" src="crt_green_mask.png" />
+        <img className="crt-frame" src="/crt_green_mask.png" alt="" />
         <CRTEffects />
 
         <OpenPanelComponent

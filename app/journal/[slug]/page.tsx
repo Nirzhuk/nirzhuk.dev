@@ -3,6 +3,7 @@ import { CustomMDX } from '@/components/mdx';
 import { formatDate, getJournalPosts } from 'utils/mdx';
 import { baseUrl } from 'app/sitemap';
 import { JournalPost } from '@/components/posts';
+import { AUTHOR } from 'utils/site';
 
 export async function generateStaticParams() {
   let posts = getJournalPosts<JournalPost>();
@@ -19,17 +20,23 @@ export async function generateMetadata({ params }) {
     return;
   }
 
-  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
+  let { title, publishedAt: publishedTime, lastUpdated, summary: description, image } = post.metadata;
   let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `${baseUrl}/journal/${post.slug}`,
+    },
+    authors: [{ name: AUTHOR.name, url: baseUrl }],
     openGraph: {
       title,
       description,
       type: 'article',
       publishedTime,
+      modifiedTime: lastUpdated ?? publishedTime,
+      authors: [AUTHOR.name],
       url: `${baseUrl}/journal/${post.slug}`,
       images: [
         {
@@ -65,7 +72,7 @@ export default async function Journal({ params }) {
             '@type': 'BlogPosting',
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
+            dateModified: post.metadata.lastUpdated ?? post.metadata.publishedAt,
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
@@ -73,7 +80,15 @@ export default async function Journal({ params }) {
             url: `${baseUrl}/journal/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio',
+              name: AUTHOR.name,
+              alternateName: AUTHOR.alternateName,
+              url: baseUrl,
+              sameAs: AUTHOR.sameAs,
+            },
+            publisher: {
+              '@type': 'Person',
+              name: AUTHOR.name,
+              url: baseUrl,
             },
           }),
         }}
@@ -82,7 +97,19 @@ export default async function Journal({ params }) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-terminal">{formatDate(post.metadata.publishedAt)}</p>
+        <p className="text-sm text-terminal">
+          <span>By {AUTHOR.name}</span>
+          <span aria-hidden="true"> · </span>
+          <time dateTime={post.metadata.publishedAt}>
+            {formatDate(post.metadata.publishedAt)}
+          </time>
+          {post.metadata.lastUpdated && (
+            <>
+              <span aria-hidden="true"> · </span>
+              <span>Updated {formatDate(post.metadata.lastUpdated)}</span>
+            </>
+          )}
+        </p>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />

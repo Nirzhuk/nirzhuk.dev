@@ -4,6 +4,7 @@ import path from 'path';
 export type BaseMetadata = {
   title?: string;
   publishedAt?: string;
+  lastUpdated?: string;
   summary?: string;
   image?: string;
 };

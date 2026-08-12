@@ -1,8 +1,13 @@
 import { JournalPosts } from '@/components/posts';
+import { baseUrl } from 'app/sitemap';
+import { SITE } from 'utils/site';
 
 export const metadata = {
   title: 'Journal',
-  description: 'Read my journal.',
+  description: SITE.journalDescription,
+  alternates: {
+    canonical: `${baseUrl}/journal`,
+  },
 };
 
 export default function Page() {

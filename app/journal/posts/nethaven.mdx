@@ -1,17 +1,20 @@
 ---
 title: 'NetHaven: run your financial life from one dashboard'
 publishedAt: '2026-08-12'
-summary: 'Why I built NetHaven — banks, brokerages and crypto in one live net worth view — how it is put together, and what shipping on Android changed.'
+lastUpdated: '2026-08-12'
+summary: 'NetHaven puts banks, brokerages and crypto in one live net worth view, on iOS, Android and web. Here is what it does, how I built it, and why Pro costs $6.67/month.'
 image: '/projects/nethaven/3.png'
 ---
 
 <Phone src="/projects/nethaven/3.png" alt="NetHaven home screen showing monthly budget, upcoming subscriptions and financial goals" side="right" />
 
-My money lived in six different apps. A checking account in one, a brokerage in another, some crypto in a third, subscriptions I only found out about when they charged me. Every few weeks I'd open a spreadsheet, copy numbers across, and get a net worth figure that was already stale by the time I finished typing it.
+**[NetHaven](https://nethaven.app/) is a personal finance app that syncs your banks, brokerages and crypto wallets into one live net worth view.** It runs on iOS, Android and the web, and it's one of the [projects](/projects) I've spent the most time on.
 
-[NetHaven](https://nethaven.app/) is what I built instead. One dashboard. Everything in it, updating as money moves.
+I built it because my money lived in six different apps. A checking account in one, a brokerage in another, some crypto in a third, subscriptions I only found out about when they charged me. Every few weeks I'd open a spreadsheet, copy numbers across, and get a net worth figure that was already stale by the time I finished typing it.
 
-## What it actually does
+One dashboard instead. Everything in it, updating as money moves.
+
+## What NetHaven actually does
 
 <Phone src="/projects/nethaven/1.png" alt="NetHaven subscriptions screen with a monthly spend total and a calendar of upcoming charges" side="left" />
 
@@ -19,17 +22,17 @@ The core is a single net worth view that combines cash, investments, property an
 
 On top of that:
 
-- **Subscriptions.** It finds recurring charges in your transactions and puts them on a calendar so you see what's hitting before it hits. The month I turned this on I found two things I was still paying for and had forgotten existed.
+- **Subscriptions.** It finds recurring charges in your transactions and puts them on a calendar, so you see what's hitting before it hits rather than after. This is the feature people tell me they open the app for.
 - **Budgets and spending.** Transactions get categorised automatically, with smart rules that learn per-merchant so you stop re-tagging the same coffee shop every week.
 - **Debt and goals.** Payoff plans and savings milestones that move on their own as the underlying accounts change.
 - **Portfolio.** Stocks, ETFs and retirement holdings broken out, rather than one lump "investments" number.
 - **Household sharing.** Separate logins, shared picture — because most people's finances aren't solo.
 
-## How it's built
+## How NetHaven is built
 
 One codebase for iOS, Android and web.
 
-The client is React Native with Expo and Expo Router, styled with NativeWind, animated with Reanimated. The API is Hono with tRPC on top, backed by Postgres. The web app runs on TanStack Start.
+The client is React Native with Expo and Expo Router, styled with NativeWind, animated with Reanimated. The API is Hono with tRPC on top, backed by Postgres. The web app runs on TanStack Start. It's the same stack I've been using across most of my [recent work](/work).
 
 Two decisions I'd make again:
 
@@ -39,12 +42,25 @@ Two decisions I'd make again:
 
 The hard part turned out to be neither. It was making a dashboard that's dense with information and still calm to look at. Financial apps default to either three big numbers that tell you nothing, or a wall of tables. Most of the design time went into that middle ground.
 
-## Now on Android
+## NetHaven is now on Android
 
 NetHaven shipped on Android recently. iOS and web have been out for a while; Android closes the loop, so the app now runs wherever you are and the same account follows you across all three.
 
 Recent releases also brought flexible budget transfer effects, bulk transaction editing, and a rebuilt portfolio screen.
 
-It's free to use, with a Pro tier at $6.67/month billed annually if you want the full set.
+NetHaven at a glance:
+
+- **Platforms.** iOS, Android, web.
+- **Accounts.** Banks and brokerages via SnapTrade; Bitcoin, Ethereum and Solana wallets.
+- **Price.** Free, or Pro at $6.67/month billed annually.
+- **Built with.** React Native, Expo, Hono, tRPC, Postgres, TanStack Start.
+
+### Is NetHaven free?
+
+Yes. The core net worth view, account syncing and budgets are free. Pro, at $6.67/month billed annually, unlocks the full feature set.
+
+### What accounts can NetHaven connect to?
+
+Checking and credit accounts, and brokerages including eToro, Robinhood, Fidelity and Interactive Brokers, all through SnapTrade. Bitcoin, Ethereum and Solana wallets track alongside them.
 
 [nethaven.app](https://nethaven.app/) — on the App Store, Google Play, and the web.
