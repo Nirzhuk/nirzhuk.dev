@@ -74,3 +74,17 @@ export function parseWaypointMonth(date: string): number {
   }
   return 6; // Default to middle of year
 }
+
+// Most recent waypoint that has already happened — used for the "Now" line on the homepage.
+export function getCurrentWaypoint(): Waypoint | undefined {
+  const today = new Date();
+  const nowKey = today.getFullYear() * 100 + (today.getMonth() + 1);
+
+  return waypoints
+    .map(waypoint => ({
+      waypoint,
+      key: parseWaypointYear(waypoint.date) * 100 + parseWaypointMonth(waypoint.date),
+    }))
+    .filter(({ key }) => key <= nowKey)
+    .sort((a, b) => b.key - a.key)[0]?.waypoint;
+}

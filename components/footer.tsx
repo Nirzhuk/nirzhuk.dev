@@ -11,8 +11,8 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="hidden sm:block">
-      <ul className="font-sm mt-8 hidden  text-xs sm:flex grid-cols-2 sm:flex-col items-center justify-center text-neutral-600 md:flex-row gap-1 sm:gap-4">
+    <footer>
+      <ul className="font-sm mt-8 flex flex-wrap text-xs items-center justify-center text-neutral-600 gap-3 sm:gap-4">
         <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"

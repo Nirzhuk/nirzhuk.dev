@@ -12,7 +12,18 @@ export const SITE = {
   name: 'Nirzhuk',
   title: 'John "Nirzhuk" Serrano',
   description:
-    'Mobile and web engineer. I build React Native and Expo apps — including NetHaven — and write about how they are put together.',
+    'Fullstack engineer, mostly frontend. Seven years building web UIs, plus React Native and Expo apps like NetHaven. Nothing beats seeing someone use something I made.',
   journalDescription:
     'Notes on building mobile and web apps with React Native, Expo and TypeScript.',
+  role: 'Senior Fullstack Engineer',
+  stack: [
+    'React Native',
+    'Expo',
+    'TypeScript',
+    'Next.js',
+    'Node.js',
+    'PostgreSQL',
+    'tRPC',
+    'Tailwind',
+  ],
 };

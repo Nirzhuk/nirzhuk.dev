@@ -97,7 +97,7 @@ function ListItem({ children }) {
 }
 
 function List({ children }) {
-  return <ul className="list-disc text-sm">{children}</ul>;
+  return <ul className="list-disc text-sm flow-root ps-6">{children}</ul>;
 }
 
 function Paragraph({ children }) {
