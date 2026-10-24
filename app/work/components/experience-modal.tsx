@@ -25,7 +25,6 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
   const { metadata, renderedContent } = experience;
   const color = companyColors[metadata.company] || '#10fb88';
 
-  console.log(metadata);
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent mobileFullScreen>

@@ -5,7 +5,7 @@ import BlobScene from './BlobScene';
 
 export default function BlobWidget() {
   return (
-    <div className="w-[200px] h-[200px] rounded-xl overflow-hidden">
+    <div className="size-full overflow-hidden">
       <Canvas
         dpr={[1, 1.5]}
         gl={{

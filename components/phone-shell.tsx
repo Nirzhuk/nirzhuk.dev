@@ -13,8 +13,8 @@ export function PhoneShell({ src, alt, side = 'right', className }: PhoneShellPr
     <figure
       className={cn(
         'my-6 w-[160px] sm:w-[200px]',
-        side === 'right' ? 'sm:float-right sm:ml-10 sm:mb-8' : 'sm:float-left sm:mr-10 sm:mb-8',
-        'mx-auto sm:mx-0',
+        side === 'right' ? 'lg:float-right lg:ml-10 lg:mb-8' : 'lg:float-left lg:mr-10 lg:mb-8',
+        'mx-auto lg:mx-0',
         className
       )}
     >

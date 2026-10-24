@@ -124,11 +124,7 @@ export const Timeline: React.FC<TimelineProps> = ({ experiences, waypoints }) =>
   };
 
   return (
-    <div className="max-w-4xl w-full sm:min-w-4xl mx-auto sm:py-8 sm:px-4 ">
-      <h1 className="font-mono text-xs uppercase tracking-[0.2em] text-terminal/70 mb-8 drop-shadow-[0_0_5px_rgba(16,251,136,0.4)]">
-        {'>'} Career_Journey
-      </h1>
-
+    <div className="w-full">
       <div
         className="relative grid grid-cols-[60px_32px_32px_1fr] md:grid-cols-[80px_40px_40px_1fr] gap-1"
         style={{ height: TOTAL_YEARS * YEAR_HEIGHT + YEAR_HEIGHT }}

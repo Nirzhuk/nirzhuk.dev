@@ -1,33 +1,38 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Clock() {
-  const [time, setTime] = useState(new Date());
+import { cn } from '@/utils/cn';
+
+export default function Clock({ className }: { className?: string }) {
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
+    setTime(new Date());
+    const timer = setInterval(() => setTime(new Date()), 1000);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="absolute sm:flex hidden bottom-16 right-8 md:right-14 md:bottom-auto md:top-10 flex-row items-center justify-center">
-      <div className="text-sm text-terminal text-right">
-        <div suppressHydrationWarning>{time.getFullYear()}</div>
-        <div suppressHydrationWarning>
-          {time.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+    <div className={cn('font-mono text-[11px] tabular-nums text-terminal/50', className)}>
+      {time ? (
+        <div className="flex flex-wrap gap-x-1.5">
+          <span suppressHydrationWarning>
+            {time.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}
+          </span>
+          <span className="text-terminal/25">/</span>
+          <span suppressHydrationWarning>
+            {time.toLocaleTimeString('en-GB', {
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            })}
+          </span>
         </div>
-        <div suppressHydrationWarning>
-          {time.toLocaleTimeString(undefined, {
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-          })}
-        </div>
-      </div>
+      ) : (
+        <div className="h-[1.35em]" aria-hidden="true" />
+      )}
     </div>
   );
 }

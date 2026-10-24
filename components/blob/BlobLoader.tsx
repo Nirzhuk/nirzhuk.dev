@@ -2,11 +2,17 @@
 
 import dynamic from 'next/dynamic';
 
+import { cn } from '@/utils/cn';
+
 const BlobWidget = dynamic(() => import('./BlobWidget'), {
   ssr: false,
-  loading: () => <div className="w-[200px] h-[200px] rounded-xl bg-terminal/10 animate-pulse" />,
+  loading: () => <div className="size-full animate-pulse rounded-xl bg-terminal/10" />,
 });
 
-export default function BlobLoader() {
-  return <BlobWidget />;
+export default function BlobLoader({ className }: { className?: string }) {
+  return (
+    <div className={cn('size-[200px] shrink-0 overflow-hidden rounded-xl', className)}>
+      <BlobWidget />
+    </div>
+  );
 }

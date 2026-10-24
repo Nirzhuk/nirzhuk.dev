@@ -1,14 +1,16 @@
-import Link from 'next/link';
-import { JournalPosts } from '@/components/posts';
-import AvailableForWork from '../components/available-for-work';
-import BlobLoader from '@/components/blob/BlobLoader';
 import { FeaturedProject } from '@/components/featured-project';
+import { JournalPosts } from '@/components/posts';
+import type { JournalPost } from '@/components/posts';
+import { ProjectTile } from '@/components/project-tile';
+import { Section } from '@/components/section';
+import { ContactCard } from '@/components/contact-card';
+import { getJournalPosts, getWorkExperiences } from 'utils/mdx';
+import type { WorkExperience } from 'utils/mdx';
+import { AUTHOR, SITE } from 'utils/site';
 import { projects } from './projects/data';
+import { formatDateShort, parseDateToDecimalYear } from './work/utils';
 import { getCurrentWaypoint } from './work/waypoints';
 import { baseUrl } from './sitemap';
-import { AUTHOR, SITE } from 'utils/site';
-
-const featured = projects.find(project => project.name === 'NetHaven') ?? projects[0];
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -22,66 +24,102 @@ const personSchema = {
   sameAs: AUTHOR.sameAs,
 };
 
-function SectionHeader({ title, href, label }: { title: string; href: string; label: string }) {
-  return (
-    <div className="mb-3 flex items-baseline justify-between gap-4 border-b border-terminal/20 pb-1">
-      <h2 className="font-mono text-xs text-terminal">{title}</h2>
-      <Link href={href} className="font-mono text-xs text-primary hover:underline">
-        {label} →
-      </Link>
-    </div>
-  );
-}
-
 export default function Page() {
   const now = getCurrentWaypoint();
+  const activeProjects = projects.filter(project => !project.deprecated);
+  const featured =
+    activeProjects.find(
+      project =>
+        project.highlight &&
+        (project.screenshots?.phone?.length ?? 0) + (project.screenshots?.web?.length ?? 0) > 0
+    ) ?? activeProjects[0];
+  const otherProjects = activeProjects.filter(project => project !== featured);
+  const posts = getJournalPosts<JournalPost>();
+  const experiences = getWorkExperiences<WorkExperience>().sort(
+    (a, b) =>
+      parseDateToDecimalYear(b.metadata.startDate) - parseDateToDecimalYear(a.metadata.startDate)
+  );
 
   return (
-    <div className="w-full max-w-xl">
-      <section className="flex flex-col-reverse items-start gap-4 sm:flex-row">
-        <div className="min-w-0 flex-1">
-          <AvailableForWork />
-          <h1 className="text-xl font-semibold">
-            I'm John <span className="text-primary">"Nirzhuk"</span> Serrano
-          </h1>
-          <p className="mt-2 text-sm text-neutral-300">{SITE.description}</p>
-          {now && (
-            <p className="mt-3 font-mono text-xs text-neutral-400">
-              <span className="text-terminal">now</span> &gt; {now.title} ·{' '}
-              <Link href="/work" className="text-primary hover:underline">
-                timeline
-              </Link>
-            </p>
-          )}
-          <ul className="mt-3 flex flex-wrap gap-1.5 font-mono text-xs">
-            {SITE.stack.map(tech => (
-              <li
-                key={tech}
-                className="rounded-lg border border-terminal/30 bg-terminal/10 px-2 py-0.5 text-terminal/90"
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
+    <div className="flex flex-col gap-14 sm:gap-16">
+      <Section
+        id="works"
+        index="01"
+        title="Selected works"
+        meta={`${activeProjects.length} projects`}
+        action={{ href: '/projects', label: 'all projects' }}
+      >
+        {featured && <FeaturedProject project={featured} />}
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          {otherProjects.map((project, index) => (
+            <ProjectTile key={project.name} project={project} index={index + 2} />
+          ))}
         </div>
-        <div className="mx-auto shrink-0 sm:mx-0">
-          <BlobLoader />
-        </div>
-      </section>
+      </Section>
 
-      {featured && (
-        <section className="mt-10">
-          <SectionHeader title="featured" href="/projects" label="all projects" />
-          <FeaturedProject project={featured} />
-        </section>
-      )}
+      <Section
+        id="career"
+        index="02"
+        title="Career"
+        meta={`${experiences.length} roles`}
+        action={{ href: '/work', label: 'full timeline' }}
+      >
+        {now && (
+          <p className="mb-4 font-mono text-[11px] text-neutral-500">
+            <span className="text-terminal">now</span>
+            <span className="px-2 text-terminal/30">&gt;</span>
+            {now.title}
+            {now.description && <span className="text-neutral-500"> — {now.description}</span>}
+          </p>
+        )}
 
-      <section className="mt-10">
-        <SectionHeader title="journal" href="/journal" label="all posts" />
+        <ol className="divide-y divide-terminal/10 border-y border-terminal/15">
+          {experiences.map(({ metadata }) => (
+            <li
+              key={`${metadata.company}-${metadata.startDate}`}
+              className="grid grid-cols-[5.25rem_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1 py-3 sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:gap-x-6"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-terminal/45">
+                {formatDateShort(metadata.startDate)} — {formatDateShort(metadata.endDate)}
+              </span>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-medium text-neutral-100">
+                  {metadata.companyUrl ? (
+                    <a
+                      href={metadata.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-terminal"
+                    >
+                      {metadata.company}
+                    </a>
+                  ) : (
+                    metadata.company
+                  )}
+                </p>
+                <p className="truncate text-xs text-neutral-400">{metadata.role}</p>
+              </div>
+              <span className="col-span-2 font-mono text-[10px] text-neutral-500 sm:col-span-1">
+                {metadata.location} · {metadata.type}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section
+        id="journal"
+        index="03"
+        title="Journal"
+        meta={`${posts.length} ${posts.length === 1 ? 'post' : 'posts'}`}
+        action={{ href: '/journal', label: 'all posts' }}
+      >
         <JournalPosts limit={3} />
-      </section>
+      </Section>
 
-      <div className="h-8" />
+      <Section id="contact" index="04" title="Contact">
+        <ContactCard />
+      </Section>
 
       {/* Kept last: React hoists <script> during hydration and drops the siblings after it. */}
       <script

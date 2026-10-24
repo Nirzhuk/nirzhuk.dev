@@ -14,41 +14,43 @@ function hostname(url: string) {
 
 export function FeaturedProject({ project }: { project: Project }) {
   const platforms = project.categories;
-  const images = project.images ?? [];
-  const cover = images[0];
+  const phone = project.screenshots?.phone ?? [];
+  const web = project.screenshots?.web ?? [];
+  const imageCount = phone.length + web.length;
 
-  const media = cover ? (
-    <ProjectCardDialog project={project}>
-      <button
-        type="button"
-        className="group mx-auto block shrink-0 cursor-pointer sm:mx-0"
-        aria-label={`Open ${project.name} screenshots`}
-      >
-        {project.isMobileApp ? (
-          <PhoneShell
-            src={cover}
-            alt={`${project.name} screenshot`}
-            className="my-0 w-[130px] transition-opacity group-hover:opacity-80 sm:float-none sm:mx-0 sm:mb-0 sm:ml-0 sm:w-[150px]"
-          />
-        ) : (
-          <ImageWithPlaceholder
-            src={cover}
-            alt={`${project.name} screenshot`}
-            width={260}
-            height={165}
-            containerClassName="w-[200px] rounded-lg border border-terminal/25 sm:w-[240px]"
-            className="h-auto w-full transition-opacity group-hover:opacity-80"
-          />
-        )}
-        <span className="mt-2 block font-mono text-xs text-neutral-400 group-hover:text-terminal">
-          {images.length} {images.length === 1 ? 'screenshot' : 'screenshots'}
-        </span>
-      </button>
-    </ProjectCardDialog>
-  ) : null;
+  const media =
+    phone.length > 0 || web.length > 0 ? (
+      <ProjectCardDialog project={project}>
+        <button
+          type="button"
+          className="group mx-auto block shrink-0 cursor-pointer sm:mx-0"
+          aria-label={`Open ${project.name} screenshots`}
+        >
+          {phone.length > 0 ? (
+            <PhoneShell
+              src={phone[0]}
+              alt={`${project.name} screenshot`}
+              className="my-0 w-[130px] transition-opacity group-hover:opacity-80 sm:float-none sm:mx-0 sm:mb-0 sm:ml-0 sm:w-[150px]"
+            />
+          ) : (
+            <ImageWithPlaceholder
+              src={web[0]}
+              alt={`${project.name} screenshot`}
+              width={260}
+              height={165}
+              containerClassName="w-[200px] rounded-lg border border-terminal/25 sm:w-[240px]"
+              className="h-auto w-full transition-opacity group-hover:opacity-80"
+            />
+          )}
+          <span className="mt-2 block font-mono text-xs text-neutral-400 group-hover:text-terminal">
+            {imageCount} {imageCount === 1 ? 'screenshot' : 'screenshots'}
+          </span>
+        </button>
+      </ProjectCardDialog>
+    ) : null;
 
   return (
-    <article className="flex flex-col gap-5 rounded-lg border border-terminal/30 bg-gradient-to-br from-terminal/10 to-primary/5 p-4 sm:flex-row">
+    <article className="flex flex-col gap-5 overflow-hidden rounded-xl border border-terminal/25 bg-gradient-to-br from-terminal/10 via-black/20 to-primary/5 p-4 transition-colors hover:border-terminal/45 lg:flex-row sm:p-5">
       {media}
 
       <div className="min-w-0 flex-1">

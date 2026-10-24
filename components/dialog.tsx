@@ -58,10 +58,10 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          'bg-gradient-to-br from-neutral-800 to-neutral-900  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed z-50 border-3 border-green-700/30 shadow-[inset_0_0_0_3px_var(--dialog-outer-color)] duration-200 md:overflow-y-auto',
+          'bg-gradient-to-br from-neutral-800 to-neutral-900 max-h-[calc(100dvh-2*var(--crt-inset-y))] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed z-50 border-3 border-green-700/30 shadow-[inset_0_0_0_3px_var(--dialog-outer-color)] duration-200 overflow-y-auto',
           mobileFullScreen
-            ? 'inset-0 m-0 h-[100dvh] w-screen rounded-none py-4 px-0 sm:inset-auto sm:h-auto sm:w-full sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-lg sm:max-w-lg md:h-[calc(100dvh-5rem)] md:top-10 md:translate-y-0 md:w-[calc(100%-2rem)] md:max-w-3xl  lg:max-w-4xl'
-            : 'top-[50%] left-[50%] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] rounded-lg py-6 px-0 sm:max-w-lg md:h-[calc(100dvh-10rem)] md:top-4 md:translate-y-0 md:w-[calc(100%-2rem)] md:max-w-3xl lg:max-w-4xl',
+            ? 'inset-0 m-0 h-[100dvh] w-screen rounded-none py-4 px-0 max-sm:inset-x-[var(--crt-inset-x)] max-sm:inset-y-[var(--crt-inset-y)] max-sm:h-auto max-sm:w-auto sm:inset-auto sm:h-auto sm:w-full sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-lg sm:max-w-lg md:h-[calc(100dvh-5rem)] md:top-10 md:translate-y-0 md:w-[calc(100%-2*var(--crt-inset-x)-2rem)] md:max-w-3xl lg:max-w-4xl'
+            : 'top-[50%] left-[50%] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] rounded-lg py-6 px-0 sm:max-w-lg md:h-[calc(100dvh-10rem)] md:top-4 md:translate-y-0 md:w-[calc(100%-2*var(--crt-inset-x)-2rem)] md:max-w-3xl lg:max-w-4xl',
           className
         )}
         style={{ ['--dialog-outer-color' as any]: '#0f1b0f' }}

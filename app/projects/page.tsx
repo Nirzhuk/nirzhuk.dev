@@ -1,40 +1,48 @@
-'use client';
+import { ArchivedRow } from '@/components/archived-row';
+import { PageHeader } from '@/components/page-header';
+import { ProjectStats } from '@/components/project-stats';
+import { ProjectTile } from '@/components/project-tile';
+import { pageMetadata } from 'utils/seo';
 import { projects } from './data';
-import { ArchivedRow, ProjectRow } from '@/components/project-row';
+
+export const metadata = pageMetadata({
+  title: 'Works',
+  description: 'Apps, tools and experiments built by Nirzhuk.',
+  path: '/projects',
+});
 
 export default function Page() {
   const active = projects.filter(project => !project.deprecated);
   const archived = projects.filter(project => project.deprecated);
 
   return (
-    <div className="w-full max-w-3xl">
-      <header className="mb-2 flex items-baseline justify-between gap-4 border-b border-terminal/20 pb-1">
-        <h1 className="font-mono text-xs text-terminal">projects</h1>
-        <p className="font-mono text-xs text-neutral-500">
-          {projects.length} total · {active.length} active
-        </p>
-      </header>
+    <div className="w-full">
+      <PageHeader
+        index="01 / works"
+        title="All projects"
+        meta={`${active.length} active · ${archived.length} archived`}
+      />
 
-      <ul>
-        {active.map(project => (
-          <ProjectRow key={project.name} project={project} />
+      <ProjectStats />
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        {active.map((project, index) => (
+          <ProjectTile key={project.name} project={project} index={index + 1} />
         ))}
-      </ul>
+      </div>
 
       {archived.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-2 border-b border-terminal/20 pb-1 font-mono text-xs text-neutral-500">
-            archived
+        <section className="mt-12">
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-500">
+            Archived
           </h2>
-          <ul className="text-sm">
+          <ul className="mt-3 divide-y divide-terminal/10 border-y border-terminal/15">
             {archived.map(project => (
               <ArchivedRow key={project.name} project={project} />
             ))}
           </ul>
         </section>
       )}
-
-      <div className="h-16" />
     </div>
   );
 }

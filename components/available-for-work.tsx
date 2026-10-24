@@ -1,19 +1,14 @@
-import React from 'react';
-
 const AvailableForWork = () => {
   return (
     <a
-      href="mailto:hello@nirzhuk.dev?subject=Work Opportunity Inquiry"
-      className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+      href="mailto:me@nirzhuk.dev?subject=Work%20Opportunity%20Inquiry"
+      className="inline-flex items-center gap-2 rounded-full border border-terminal/30 bg-terminal/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-terminal transition-colors hover:border-terminal/60 hover:bg-terminal/15"
     >
-      <div className="flex items-center gap-2 relative">
-        <div className="absolute size-2 bg-terminal  animate-ping" />
-        <div className="size-2 bg-terminal " />
-      </div>
-
-      <h2 className="text-xs font-mono font-bold">Available for work</h2>
-      <span className="text-xs text-gray-400">•</span>
-      <span className="text-xs font-mono text-primary">me@nirzhuk.dev</span>
+      <span className="relative flex size-1.5">
+        <span className="absolute inline-flex size-full animate-ping rounded-full bg-terminal opacity-70" />
+        <span className="relative inline-flex size-1.5 rounded-full bg-terminal" />
+      </span>
+      available for work
     </a>
   );
 };

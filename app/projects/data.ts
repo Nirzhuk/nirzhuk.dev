@@ -1,13 +1,34 @@
+export interface BuiltWithGroup {
+  label: string;
+  items: string[];
+}
+
 export interface Project {
   name: string;
   url: string;
   description: string;
   source?: string;
+  /**
+   * Compact highlight tags for tiles, featured cards and stats.
+   * The full breakdown lives in `builtWith`.
+   */
   stack: string[];
+  /**
+   * Grouped breakdown ("Tech", "Data / storage", "Runtime", "Platforms", …)
+   * rendered in the project dialog. Falls back to splitting `stack` when absent.
+   */
+  builtWith?: BuiltWithGroup[];
   deprecated: boolean;
   categories: string[];
-  images?: string[];
-  isMobileApp?: boolean;
+  /**
+   * Screenshots grouped by platform. A project can have both groups:
+   * phone renders as a phone carousel, web as a full-frame gallery, and
+   * tiles show a phone-over-web composite when both exist.
+   */
+  screenshots?: {
+    phone?: string[];
+    web?: string[];
+  };
   journalSlug?: string;
   highlight?: boolean;
 }
@@ -20,13 +41,24 @@ export const projects: Project[] = [
     description:
       'Local-only Chrome extension for scheduled one-time, daily, weekly, and monthly tasks in the Chrome side panel. No server, no account, no network requests — tasks live in IndexedDB on your device, with reminders, notifications, and JSON backup export.',
     stack: ['WXT', 'React', 'TypeScript', 'Dexie/IndexedDB', 'Zustand', 'Tailwind/Shadcn'],
+    builtWith: [
+      {
+        label: 'Tech',
+        items: ['WXT', 'React', 'TypeScript', 'Zustand', 'Tailwind CSS / shadcn/ui'],
+      },
+      { label: 'Data / storage', items: ['Dexie', 'IndexedDB', 'Chrome Storage API'] },
+      { label: 'Runtime', items: ['Chrome Extension Manifest V3', 'Background Service Worker'] },
+      { label: 'Platforms', items: ['Chrome Browser Extension', 'Chrome Side Panel'] },
+    ],
     deprecated: false,
     categories: ['Browser Extension'],
-    images: [
-      '/projects/todo-remember/screenshot-1-tasks.png',
-      '/projects/todo-remember/screenshot-2-schedule.png',
-      '/projects/todo-remember/screenshot-3-dark.png',
-    ],
+    screenshots: {
+      web: [
+        '/projects/todo-remember/screenshot-1-tasks.png',
+        '/projects/todo-remember/screenshot-2-schedule.png',
+        '/projects/todo-remember/screenshot-3-dark.png',
+      ],
+    },
   },
   {
     name: 'Alfred',
@@ -35,6 +67,19 @@ export const projects: Project[] = [
     description:
       'Local desktop app for building automations across your AI coding agents. Compose workflows as visual graphs, route them through agent CLIs like Claude Code, Codex, or Cursor with pinned skills and models, then run the sequence and keep the outputs you want. Free and open source under GPL-3.0.',
     stack: ['Tauri', 'Rust', 'React', 'TypeScript', 'React Flow'],
+    builtWith: [
+      {
+        label: 'Tech',
+        items: ['TypeScript', 'Rust', 'React', 'Tauri', 'React Flow', 'Zustand', 'CSS', 'Vite'],
+      },
+      { label: 'Data / storage', items: ['SQLite', 'rusqlite', 'bun:sqlite', 'Cloudflare D1'] },
+      {
+        label: 'Infrastructure',
+        items: ['Cloudflare Workers', 'Docker', 'GitHub Actions', 'GitHub Releases'],
+      },
+      { label: 'Runtime', items: ['Native system WebView', 'Tokio', 'Bun'] },
+      { label: 'Platforms', items: ['macOS', 'Windows', 'Linux desktop'] },
+    ],
     deprecated: false,
     categories: ['Desktop App'],
   },
@@ -44,31 +89,66 @@ export const projects: Project[] = [
     url: 'https://nethaven.app/',
 
     description:
-      'Personal finance dashboard that syncs banks, brokerages, and crypto into one live net worth view, with budgets, subscriptions, debt payoff, and savings goals updating as money moves. Available on iOS, Android, and the web.',
+      'Personal finance dashboard that syncs banks, brokerages, and crypto into one live net worth view, with budgets, subscriptions, debt payoff, and savings goals updating as money moves. Available on iOS, Android, and the web, with the web app on Cloudflare Workers and the API on self-hosted infrastructure.',
     stack: [
       'React Native',
       'PostgresQL',
+      'Drizzle-ORM',
       'Hono',
       'TRPC',
       'Tanstack Start',
+      'Cloudflare Workers',
+      'Self-hosted infra',
       'React Native Reanimated',
       'Expo',
-      'Tailwind/NativeWind',
+      'UniWind',
       'Expo Router',
+    ],
+    builtWith: [
+      {
+        label: 'Tech',
+        items: [
+          'TypeScript',
+          'React',
+          'TanStack Start',
+          'TanStack Router',
+          'React Native',
+          'Expo',
+          'Expo Router',
+          'Tailwind CSS',
+          'UniWind',
+          'TanStack Query',
+          'Zustand',
+          'Hono',
+          'tRPC',
+          'Better Auth',
+        ],
+      },
+      {
+        label: 'Data / storage',
+        items: ['PostgreSQL', 'Drizzle ORM', 'Redis', 'MMKV', 'Cloudflare R2'],
+      },
+      {
+        label: 'Infrastructure',
+        items: ['Cloudflare Workers', 'Docker', 'Expo Application Services'],
+      },
+      { label: 'Runtime', items: ['Bun', 'Cloudflare Workers (web SSR)'] },
+      { label: 'Platforms', items: ['Web', 'iOS', 'Android'] },
     ],
     deprecated: false,
     categories: ['Mobile App', 'Web App'],
-    isMobileApp: true,
     journalSlug: 'nethaven',
-    images: [
-      '/projects/nethaven/1.png',
-      '/projects/nethaven/2.png',
-      '/projects/nethaven/3.png',
-      '/projects/nethaven/4.png',
-      '/projects/nethaven/5.png',
-      '/projects/nethaven/6.png',
-      '/projects/nethaven/7.png',
-    ],
+    screenshots: {
+      phone: [
+        '/projects/nethaven/1.png',
+        '/projects/nethaven/2.png',
+        '/projects/nethaven/3.png',
+        '/projects/nethaven/4.png',
+        '/projects/nethaven/5.png',
+        '/projects/nethaven/6.png',
+        '/projects/nethaven/7.png',
+      ],
+    },
   },
   {
     name: 'Animalese Generator',
@@ -86,9 +166,34 @@ export const projects: Project[] = [
     description:
       'Small app to do multiple currency rates at the same time with multiple other currencies, simple and minimalism',
     stack: ['Expo', 'React Native', 'Tailwind/NativeWind', 'Expo Router'],
+    builtWith: [
+      {
+        label: 'Tech',
+        items: [
+          'TypeScript',
+          'React Native',
+          'Expo',
+          'Expo Router',
+          'Zustand',
+          'NativeWind',
+          'Tailwind CSS',
+          'React Native Reanimated',
+          'Swift',
+          'SwiftUI',
+          'WidgetKit',
+        ],
+      },
+      { label: 'Data / storage', items: ['MMKV', 'FloatRates API'] },
+      { label: 'Services', items: ['RevenueCat', 'Vexo'] },
+      { label: 'Infrastructure', items: ['EAS Build', 'EAS Update'] },
+      { label: 'Runtime', items: ['Hermes'] },
+      { label: 'Platforms', items: ['iOS with native home screen widgets'] },
+    ],
     deprecated: false,
     categories: ['Mobile App'],
-    images: ['/projects/monnie/1.png', '/projects/monnie/2.png', '/projects/monnie/3.png'],
+    screenshots: {
+      phone: ['/projects/monnie/1.png', '/projects/monnie/2.png', '/projects/monnie/3.png'],
+    },
   },
   {
     name: 'Dither tool',
@@ -97,7 +202,9 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Tailwind/Shadcn'],
     deprecated: false,
     categories: ['Web Tool'],
-    images: ['projects/dither.png'],
+    screenshots: {
+      web: ['/projects/dither.png'],
+    },
   },
   {
     name: 'Snackies',

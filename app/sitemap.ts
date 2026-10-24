@@ -1,6 +1,7 @@
 import { getJournalPosts } from 'utils/mdx';
+import { SITE_URL } from 'utils/seo';
 
-export const baseUrl = 'https://nirzhuk.dev';
+export const baseUrl = SITE_URL;
 
 export default async function sitemap() {
   let journalPosts = getJournalPosts().map(post => ({
