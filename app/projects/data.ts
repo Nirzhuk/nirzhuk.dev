@@ -82,6 +82,15 @@ export const projects: Project[] = [
     ],
     deprecated: false,
     categories: ['Desktop App'],
+    screenshots: {
+      web: [
+        '/projects/alfred/1-workflow.png',
+        '/projects/alfred/2-activity.png',
+        '/projects/alfred/3-speak.png',
+        '/projects/alfred/4-connected-apps.png',
+        '/projects/alfred/5-native-agents.png',
+      ],
+    },
   },
   {
     name: 'NetHaven',
