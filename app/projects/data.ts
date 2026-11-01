@@ -35,6 +35,61 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'Nota',
+    highlight: true,
+    url: 'https://nota.nirzhuk.dev',
+    source: 'https://github.com/Nirzhuk/nota',
+    description:
+      'Nota keeps everything you like on X, Reddit, YouTube, GitHub, Hacker News, Bluesky and Instagram in one searchable app on your computer. A Chrome extension notices the like, star, upvote or save you already click and hands the post to a local Tauri app, queueing saves while the app is closed. Search every word, filter by site, sort into folders and tags, or import your Reddit saves and X bookmarks. No account, no server, MIT licensed.',
+    stack: ['Tauri', 'Rust', 'React', 'TypeScript', 'Chrome MV3', 'Astro'],
+    builtWith: [
+      {
+        label: 'Tech',
+        items: [
+          'TypeScript',
+          'React 19',
+          'Rust',
+          'Tauri 2',
+          'Astro',
+          'Vite',
+          'Phosphor Icons',
+          'CSS',
+        ],
+      },
+      {
+        label: 'Data / storage',
+        items: ['notes.json', 'Local image cache', 'chrome.storage.local'],
+      },
+      {
+        label: 'Runtime',
+        items: [
+          'Native system WebView',
+          'Chrome MV3 service worker',
+          'Local HTTP bridge (127.0.0.1:4317)',
+          'Bun',
+          'Turborepo',
+        ],
+      },
+      {
+        label: 'Infrastructure',
+        items: ['GitHub Actions', 'GitHub Releases', 'Chrome Web Store', 'Tauri updater'],
+      },
+      { label: 'Platforms', items: ['macOS', 'Windows', 'Chrome extension'] },
+    ],
+    deprecated: false,
+    categories: ['Desktop App', 'Browser Extension'],
+    screenshots: {
+      web: [
+        '/projects/nota/1-find-it.png',
+        '/projects/nota/2-save-anything.png',
+        '/projects/nota/3-stays-local.png',
+        '/projects/nota/4-search.png',
+        '/projects/nota/5-free.png',
+        '/projects/nota/6-keep-it.png',
+      ],
+    },
+  },
+  {
     name: 'Todo Remember',
     url: 'https://chromewebstore.google.com/detail/todo-remember/bnbiebhgjagjlgddcedajhmiljglblje',
     source: 'https://github.com/Nirzhuk/todo-remember',
