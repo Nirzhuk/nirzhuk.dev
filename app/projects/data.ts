@@ -80,12 +80,11 @@ export const projects: Project[] = [
     categories: ['Desktop App', 'Browser Extension'],
     screenshots: {
       web: [
-        '/projects/nota/1-find-it.png',
-        '/projects/nota/2-save-anything.png',
-        '/projects/nota/3-stays-local.png',
-        '/projects/nota/4-search.png',
-        '/projects/nota/5-free.png',
-        '/projects/nota/6-keep-it.png',
+        '/projects/nota/1-library.webp',
+        '/projects/nota/2-save.webp',
+        '/projects/nota/3-search.webp',
+        '/projects/nota/4-organize.webp',
+        '/projects/nota/5-local.webp',
       ],
     },
   },
